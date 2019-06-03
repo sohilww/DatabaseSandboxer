@@ -10,8 +10,6 @@ namespace DatabaseSandbox.Core.Test
     {
         private string _connectionString;
 
-        string _databaseName =
-            "databaseTest";
         string _connectionstring =
             "data source=.;initial catalog=master;integrated security=true;";
 
@@ -25,10 +23,15 @@ namespace DatabaseSandbox.Core.Test
         [Fact]
         public void should_create_database_with_specific_name()
         {
-            var result = _database.Create(Database.TestName);
+            var databaseName = Database.TestName;
+            var result = _database.Create(databaseName);
 
             result.Should().BeTrue();
+
+            DropDatabase(databaseName);
         }
+
+        
 
         [Fact]
         public void should_drop_database_with_specific_name()
@@ -47,7 +50,10 @@ namespace DatabaseSandbox.Core.Test
         {
             _database.Create(databaseName);
         }
-
+        private void DropDatabase(string databaseName)
+        {
+            _database.Drop(databaseName);
+        }
 
         public void Dispose()
         {
