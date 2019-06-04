@@ -1,9 +1,9 @@
 ﻿namespace DatabaseSandbox.Core.Test.TestConstants
 {
-    public static class PowerShellCommand
+    internal static class PowerShellCommand
     {
-        public static string SuccessfulCommand = "$psVersionTable";
-        public static string WrongCommand = "get-services";
-        public static string PathOfPowerShellFile = @"TestConstants\testFile.ps1";
+        internal static string SuccessfulCommand = "$psVersionTable";
+        internal static string WrongCommand = "get-services";
+        internal static string PathOfPowerShellFile = @"TestConstants\testFile.ps1";
     }
 }
