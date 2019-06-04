@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using DatabaseSandbox.core;
+using DatabaseSandbox.core.Interfaces;
 using DatabaseSandbox.Core.Test.TestConstants;
 using FluentAssertions;
 using Xunit;
@@ -16,9 +17,9 @@ namespace DatabaseSandbox.Core.Test
         {
             var httpClient = new HttpClient();
             string migrationFilePath = PowerShellCommand.PathOfPowerShellFile;
-            var facade=new DatabaseSandBoxFacade(); 
+            var facade=new DatabaseSandboxFacade(); 
 
-            Action action=()=> facade.ExecuteSandBox(httpClient,_databaseName,_connectionString,migrationFilePath);
+            Action action=()=> facade.ExecuteSandbox(httpClient,_connectionString,_databaseName,migrationFilePath);
 
             action.Should().NotThrow<Exception>();
         }

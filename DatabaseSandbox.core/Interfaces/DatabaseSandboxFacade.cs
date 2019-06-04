@@ -1,12 +1,12 @@
 ﻿using System.Net.Http;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.core.Interfaces
 {
-    public class DatabaseSandBoxFacade
+    public class DatabaseSandboxFacade
     {
-        public void ExecuteSandBox(HttpClient httpClient,
-            string databaseName,
+        public void ExecuteSandbox(HttpClient httpClient,
             string connectionString,
+            string databaseName,
             string migrationFilePath
             )
         {

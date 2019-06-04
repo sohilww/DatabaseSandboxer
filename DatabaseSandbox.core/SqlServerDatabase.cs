@@ -4,16 +4,14 @@ namespace DatabaseSandbox.core
 {
     public class SqlServerDatabase : DatabaseCreation, IDisposable
     {
-        private string _connectionString;
         private SqlConnection _sqlConnection;
 
-        public SqlServerDatabase(string connectionString)
+        public SqlServerDatabase(string connectionString):base(connectionString)
         {
-            _connectionString = connectionString;
-            _sqlConnection = new SqlConnection(_connectionString);
+            _sqlConnection = new SqlConnection(ConnectionString);
             _sqlConnection.Open();
         }
-        public bool Create(string databaseName)
+        public override bool Create(string databaseName)
         {
 
             if (IsExists(databaseName))
@@ -30,7 +28,7 @@ namespace DatabaseSandbox.core
 
         }
 
-        public bool IsExists(string databaseName)
+        public override bool IsExists(string databaseName)
         {
             var commandText = "SELECT name FROM master.dbo.sysdatabases " +
                      $" WHERE name = '{databaseName}'";
@@ -40,7 +38,7 @@ namespace DatabaseSandbox.core
             return exist != null;
         }
 
-        public bool Drop(string databaseName)
+        public override bool Drop(string databaseName)
         {
             var commandText = $"Drop Database [{databaseName}]";
             var existsCommand = new SqlCommand(commandText, _sqlConnection);
