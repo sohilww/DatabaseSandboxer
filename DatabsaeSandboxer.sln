@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSandboxer.Xunit", "DatabaseSandboxer.Xunit\DatabaseSandboxer.Xunit.csproj", "{12423F8B-6EA1-411B-8869-76BC1F0CF5C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandboxer.Xunit", "DatabaseSandboxer.Xunit\DatabaseSandboxer.Xunit.csproj", "{12423F8B-6EA1-411B-8869-76BC1F0CF5C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSandbox.core", "DatabaseSandbox.core\DatabaseSandbox.core.csproj", "{25DB3307-3896-4230-AA6A-8D465647E03B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.core", "DatabaseSandbox.core\DatabaseSandbox.core.csproj", "{25DB3307-3896-4230-AA6A-8D465647E03B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSandbox.Core.Test", "DatabaseSandbox.Core.Test\DatabaseSandbox.Core.Test.csproj", "{42918F66-3B98-42AA-A64F-4EFC595312FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.Core.Test", "DatabaseSandbox.Core.Test\DatabaseSandbox.Core.Test.csproj", "{42918F66-3B98-42AA-A64F-4EFC595312FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71CB5980-E387-4B45-9ADE-EF9EFC676C8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AE65E968-C8E3-465E-96E2-24B27EB7C0C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1ADD16D3-3B4A-4B78-8BB1-B3835D7A1443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12423F8B-6EA1-411B-8869-76BC1F0CF5C1} = {71CB5980-E387-4B45-9ADE-EF9EFC676C8F}
+		{25DB3307-3896-4230-AA6A-8D465647E03B} = {71CB5980-E387-4B45-9ADE-EF9EFC676C8F}
+		{42918F66-3B98-42AA-A64F-4EFC595312FE} = {AE65E968-C8E3-465E-96E2-24B27EB7C0C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F3E4393-2F87-4B30-B06F-D221D83BEEA0}
