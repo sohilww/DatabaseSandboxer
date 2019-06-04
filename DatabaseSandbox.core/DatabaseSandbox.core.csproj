@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,6 +6,20 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>false</Optimize>
+    <PackageId>DatbaseSandboxer</PackageId>
+    <Authors>sohil_ww</Authors>
+    <Company>your_company</Company>
+    <PackageDescription>
+      With this packages you can create database for each http call and create sandbox for test
+    </PackageDescription>
+    <PackageTags>
+      databaseSandbox,sandbox,sandboxer,databaseSandboxer
+    </PackageTags>
+    <IncludeSource>true</IncludeSource>
+    <RepositoryUrl>
+      https://github.com/sohilww/DatabaseSandboxer
+    </RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
