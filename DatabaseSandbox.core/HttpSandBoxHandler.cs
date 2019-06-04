@@ -7,7 +7,7 @@ namespace DatabaseSandbox.core
         public void SetSandBoxHeader(HttpClient httpClient,string databaseName)
         {
             httpClient.DefaultRequestHeaders
-                .Add("databaseSandbox", databaseName);
+                .TryAddWithoutValidation("databaseSandbox", databaseName);
         }
     }
 }
