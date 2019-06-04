@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace DatabaseSandbox.core
 {
-    public static class ServiceLocator
+    public static class DatabaseSandboxServiceLocator
     {
         public static string ConnectionString = "";
-        static ServiceLocator()
+        static DatabaseSandboxServiceLocator()
         {
             _services = new Dictionary<Type, Type>
             {

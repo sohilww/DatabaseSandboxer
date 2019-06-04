@@ -49,7 +49,7 @@ namespace DatabaseSandboxer.Xunit
 
         public override void After(MethodInfo methodUnderTest)
         {
-            var database = ServiceLocator
+            var database = DatabaseSandboxServiceLocator
                 .GetService<DatabaseCreation>(new object[]{_connectionString});
             database.Drop(_databaseName);
         }
