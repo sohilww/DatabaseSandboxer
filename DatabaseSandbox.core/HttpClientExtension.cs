@@ -6,8 +6,7 @@ namespace DatabaseSandbox.core
     {
         public static void SetSandBoxHeader(this HttpClient httpClient,string databaseName)
         {
-            httpClient.DefaultRequestHeaders
-                .Add("databaseSandbox",databaseName);
+           
         }
     }
 }
