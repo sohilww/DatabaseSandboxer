@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>false</Optimize>
     <PackageId>DatbaseSandboxer</PackageId>
     <Authors>sohil_ww</Authors>
-    <Company>your_company</Company>
     <PackageDescription>
       With this packages you can create database for each http call and create sandbox for test
     </PackageDescription>
