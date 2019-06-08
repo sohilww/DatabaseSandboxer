@@ -13,7 +13,6 @@ namespace DatabaseSandbox.core
             if (IsScriptFile(command))
                 command = RetrieveCommandByReadingTheFile(command);
             ExecuteCommand(command);
-
         }
 
         private static bool IsScriptFile(string command)
