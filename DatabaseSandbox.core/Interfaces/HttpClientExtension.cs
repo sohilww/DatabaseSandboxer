@@ -12,8 +12,8 @@ namespace DatabaseSandbox.core.Interfaces
             var databaseSandboxFacade = new DatabaseSandboxFacade();
             databaseSandboxFacade
                 .ExecuteSandbox(httpClient,
-                    databaseName,
                     connectionString,
+                    databaseName,
                     migrationPath);
         }
         public static void SetSandBoxHeader(this HttpRequestMessage httpRequestMessage,
@@ -24,8 +24,8 @@ namespace DatabaseSandbox.core.Interfaces
             var databaseSandboxFacade = new DatabaseSandboxFacade();
             databaseSandboxFacade
                 .ExecuteSandbox(httpRequestMessage,
-                    databaseName,
                     connectionString,
+                    databaseName,
                     migrationPath);
         }
 
