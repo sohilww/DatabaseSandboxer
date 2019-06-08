@@ -18,7 +18,8 @@ namespace DatabaseSandbox.Core.Test
         [Fact]
         public void given_correctCommand_when_execute_then_shouldNot_throw_any_exception()
         {
-            Action action = () => _powerShellHandler.Execute(PowerShellCommand.SuccessfulCommand);
+            Action action = () => _powerShellHandler
+                .Execute(PowerShellCommand.SuccessfulCommand,"dbName");
 
             action.Should().NotThrow<PowerShellExecutingException>();
         }
@@ -27,7 +28,8 @@ namespace DatabaseSandbox.Core.Test
         public void given_wrongCommand_when_execute_command_then_throw_exception()
         {
            
-            Action action = () => _powerShellHandler.Execute(PowerShellCommand.WrongCommand);
+            Action action = () => _powerShellHandler
+                .Execute(PowerShellCommand.WrongCommand,"dbName");
 
             action.Should().Throw<PowerShellExecutingException>();
 
@@ -36,7 +38,7 @@ namespace DatabaseSandbox.Core.Test
         [Fact]
         public void given_command_path_when_execute_command_then_should_not_throw_any_exception()
         {
-            Action action = () => _powerShellHandler.Execute(PowerShellCommand.PathOfPowerShellFile);
+            Action action = () => _powerShellHandler.Execute(PowerShellCommand.PathOfPowerShellFile,"dbName");
 
             action.Should().NotThrow<Exception>();
         }

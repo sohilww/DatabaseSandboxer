@@ -8,10 +8,14 @@ namespace DatabaseSandbox.core
 {
     public class PowerShellHandler
     {
-        public void Execute(string command)
+        public void Execute(string command,string databaseName)
         {
             if (IsScriptFile(command))
                 command = RetrieveCommandByReadingTheFile(command);
+
+
+            //Todo:Added this for passing manual test
+            command= command.Replace("{dbName}", databaseName);
             ExecuteCommand(command);
         }
 
