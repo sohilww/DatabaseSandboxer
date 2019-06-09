@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>DatabaseSandbox.FluentMigrator</RootNamespace>
+    <AssemblyName>DatabaseSandbox.FluentMigrator</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.core.csproj" />
+  </ItemGroup>
+
+</Project>

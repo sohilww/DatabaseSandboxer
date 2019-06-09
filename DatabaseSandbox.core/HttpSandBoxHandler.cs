@@ -4,10 +4,10 @@ namespace DatabaseSandbox.core
 {
     public class HttpSandBoxHandler
     {
-        public void SetSandBoxHeader(HttpClient httpClient,string databaseName)
+        public void SetSandBoxHeader(HttpClient httpClient,string connectionString)
         {
             httpClient.DefaultRequestHeaders
-                .TryAddWithoutValidation("databaseSandbox", databaseName);
+                .TryAddWithoutValidation("databaseSandbox", connectionString);
         }
     }
 }

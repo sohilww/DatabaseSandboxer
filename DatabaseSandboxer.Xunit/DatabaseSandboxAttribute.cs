@@ -37,21 +37,19 @@ namespace DatabaseSandboxer.Xunit
             (string connectionString,
             string migrationPath)
         {
-            _databaseName = Database.Name;
+            _databaseName = Database.NewName;
         }
 
 
         public override void Before(MethodInfo methodUnderTest)
         {
-            _httpClient.SetSandboxHeader(_connectionString,_databaseName,_migrationPath);
+            _httpClient.SetSandboxHeader();
             
         }
 
         public override void After(MethodInfo methodUnderTest)
         {
-            var database = DatabaseSandboxServiceLocator
-                .GetService<DatabaseCreation>(new object[]{_connectionString});
-            database.Drop(_databaseName);
+            //
         }
     }
 }
