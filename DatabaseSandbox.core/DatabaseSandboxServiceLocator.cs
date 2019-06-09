@@ -5,19 +5,20 @@ namespace DatabaseSandbox.core
 {
     public static class DatabaseSandboxServiceLocator
     {
-        public static string ConnectionString = "";
         static DatabaseSandboxServiceLocator()
         {
-            _services = new Dictionary<Type, Type>
-            {
-                {typeof(DatabaseCreation), typeof(SqlServerDatabase)}
-            };
+            _services = new Dictionary<Type, object>();
         }
-        private static Dictionary<Type, Type> _services;
-        public static T GetService<T>(object[] args=null)
+        private static readonly Dictionary<Type, object> _services;
+        public static TSuper GetService<TSuper>()
         {
-            var type = _services[typeof(T)];
-            return (T)(Activator.CreateInstance(type,args));
+            var instance = _services[typeof(TSuper)];
+            return (TSuper)(instance);
+        }
+
+        public static bool RegisterService<TSuper>(object implementation)
+        {
+            return _services.TryAdd(typeof(TSuper),implementation);
         }
     }
 }

@@ -4,35 +4,26 @@ namespace DatabaseSandbox.core.Interfaces
 {
     public class DatabaseSandboxFacade
     {
-        public void ExecuteSandbox(HttpClient httpClient,
-            string connectionString,
-            string databaseName,
-            string migrationFilePath
-            )
+        public void ExecuteSandbox(HttpClient httpClient)
         {
-            var fluentMigratorHandler = new FluentMigratorHandler();
-            fluentMigratorHandler
-                .Handle(connectionString,databaseName,migrationFilePath);
+            var databaseInformation = ExecuteHandler();
 
             var httpSandBoxHandler = new HttpSandBoxHandler();
-            httpSandBoxHandler.SetSandBoxHeader(httpClient,connectionString);
-
-
+            httpSandBoxHandler.SetSandBoxHeader(httpClient,databaseInformation);
         }
-        public void ExecuteSandbox(HttpRequestMessage httpRequestMessage,
-            string connectionString,
-            string databaseName,
-            string migrationFilePath
-        )
+        public void ExecuteSandbox(HttpRequestMessage httpRequestMessage)
         {
-            var fluentMigratorHandler = new FluentMigratorHandler();
-            fluentMigratorHandler
-                .Handle(connectionString, databaseName, migrationFilePath);
+            var databaseInformation = ExecuteHandler();
 
             var httpSandBoxHandler = new HttpRequestMessageSandboxHandler();
-            httpSandBoxHandler.SetSandBoxHeader(httpRequestMessage, connectionString);
+            httpSandBoxHandler.SetSandBoxHeader(httpRequestMessage, databaseInformation);
+        }
 
-
+        private CreatedDatabaseInformation ExecuteHandler()
+        {
+            var fluentMigratorHandler = DatabaseSandboxServiceLocator.GetService<IDatabaseSandboxHandler>();
+            var databaseInformation = fluentMigratorHandler.Execute();
+            return databaseInformation;
         }
     }
 }

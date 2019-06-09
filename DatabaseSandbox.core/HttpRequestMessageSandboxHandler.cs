@@ -1,13 +1,17 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using DatabaseSandbox.core.Utility;
 
 namespace DatabaseSandbox.core
 {
-    public class HttpRequestMessageSandboxHandler
+    internal class HttpRequestMessageSandboxHandler
     {
-        public void SetSandBoxHeader(HttpRequestMessage httpRequestMessage, string databaseName)
+        internal void SetSandBoxHeader(HttpRequestMessage httpRequestMessage, CreatedDatabaseInformation databaseInformation)
         {
             httpRequestMessage.Headers
-                .TryAddWithoutValidation("databaseSandbox", databaseName);
+                .TryAddWithoutValidation(HeaderNames.DatabaseConnectionString, databaseInformation.ConnectionString);
+            httpRequestMessage.Headers
+                .TryAddWithoutValidation(HeaderNames.DatabaseName, databaseInformation.DbName);
         }
     }
 }
