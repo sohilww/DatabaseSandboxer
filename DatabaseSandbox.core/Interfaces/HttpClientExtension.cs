@@ -4,7 +4,7 @@ namespace DatabaseSandbox.core.Interfaces
 {
     public static class HttpClientExtension
     {
-        public static void SetSandBoxHeader(this HttpClient httpClient,
+        public static void SetSandboxHeader(this HttpClient httpClient,
             string connectionString,
             string databaseName,
             string migrationPath)
@@ -16,7 +16,7 @@ namespace DatabaseSandbox.core.Interfaces
                     databaseName,
                     migrationPath);
         }
-        public static void SetSandBoxHeader(this HttpRequestMessage httpRequestMessage,
+        public static void SetSandboxHeader(this HttpRequestMessage httpRequestMessage,
             string connectionString,
             string databaseName,
             string migrationPath)

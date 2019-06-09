@@ -43,7 +43,7 @@ namespace DatabaseSandboxer.Xunit
 
         public override void Before(MethodInfo methodUnderTest)
         {
-            _httpClient.SetSandBoxHeader(_connectionString,_databaseName,_migrationPath);
+            _httpClient.SetSandboxHeader(_connectionString,_databaseName,_migrationPath);
             
         }
 
