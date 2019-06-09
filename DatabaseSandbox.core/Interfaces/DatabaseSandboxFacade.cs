@@ -9,14 +9,14 @@ namespace DatabaseSandbox.core.Interfaces
             var databaseInformation = ExecuteHandler();
 
             var httpSandBoxHandler = new HttpSandBoxHandler();
-            httpSandBoxHandler.SetSandBoxHeader(httpClient,databaseInformation.ConnectionString);
+            httpSandBoxHandler.SetSandBoxHeader(httpClient,databaseInformation);
         }
         public void ExecuteSandbox(HttpRequestMessage httpRequestMessage)
         {
             var databaseInformation = ExecuteHandler();
 
             var httpSandBoxHandler = new HttpRequestMessageSandboxHandler();
-            httpSandBoxHandler.SetSandBoxHeader(httpRequestMessage, databaseInformation.ConnectionString);
+            httpSandBoxHandler.SetSandBoxHeader(httpRequestMessage, databaseInformation);
         }
 
         private CreatedDatabaseInformation ExecuteHandler()

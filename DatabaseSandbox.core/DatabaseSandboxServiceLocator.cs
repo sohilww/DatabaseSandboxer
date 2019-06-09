@@ -16,9 +16,9 @@ namespace DatabaseSandbox.core
             return (TSuper)(instance);
         }
 
-        public static void RegisterService<TSuper,TImplementation>(TImplementation implementation)
+        public static bool RegisterService<TSuper>(object implementation)
         {
-            _services.Add(typeof(TSuper),implementation);
+            return _services.TryAdd(typeof(TSuper),implementation);
         }
     }
 }
