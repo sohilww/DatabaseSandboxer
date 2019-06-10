@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using DatabaseSandbox.core;
 using DatabaseSandbox.core.Configurations;
 using Xunit;
@@ -11,13 +12,14 @@ namespace DatabaseSandbox.FluentMigrator.Test
     {
         private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
 
-        private string _migrationDllPath =
-            @"F:\Project\PAP\DatabaseSandboxer\DatabaseSandbox.FluentMigrator.Test\MigratorFile\FluentMigrator.dll";
+        private string _migrationDllPath;
+            
 
         private readonly SqlServerDatabase _sqlServerDatabase;
         public FluentMigratorHandlerTest()
         {
             _sqlServerDatabase =new SqlServerDatabase(_connectionString);
+            _migrationDllPath= Directory.GetCurrentDirectory()+ @"\MigratorFile\FluentMigrator.dll";
         }
         [Fact]
         public void when_execute_fluent_migration_should_create_database()
