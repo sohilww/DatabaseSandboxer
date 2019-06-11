@@ -40,12 +40,21 @@ namespace DatabaseSandbox.core
 
         public override bool Drop(string databaseName)
         {
+            CloseConnections(databaseName);
             var commandText = $"Drop Database [{databaseName}]";
             var existsCommand = new SqlCommand(commandText, _sqlConnection);
 
             var exist = existsCommand.ExecuteScalar();
 
             return exist != null;
+        }
+
+        private void CloseConnections(string databaseName)
+        {
+            var commandText = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
+            var existsCommand=new SqlCommand(commandText,_sqlConnection);
+
+            existsCommand.ExecuteNonQuery();
         }
 
         public void Dispose()
