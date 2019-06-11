@@ -28,8 +28,10 @@ namespace DatabaseSandbox.FluentMigrator.Test
             var handler = CreateFluentMigratorHandler();
             DatabaseSandboxServiceLocator.RegisterService<IDatabaseSandboxHandler>(handler);
             var httpClient = new HttpClient();
-
+            
             httpClient.SetSandboxHeader();
+
+            httpClient.GetAsync("http://localhost:/hi").GetAwaiter().GetResult();
 
             var databaseName = httpClient.DefaultRequestHeaders
                 .GetValues(HeaderNames.DatabaseName).First();
