@@ -1,6 +1,6 @@
 ﻿namespace DatabaseSandbox.core.Configurations
 {
-    public class DbSandboxConnectionString
+    public abstract class DbSandboxConnectionString
     {
         public string DataSourcePath { get; set; }
 
@@ -9,8 +9,8 @@
         public string Password { get; set; }
     }
 
-    public class SqlServerDbSandboxConnectionString : DbSandboxConnectionString
+    public class SeedDataScriptConfiguration
     {
-        public bool IntegratedSecurity { get; set; }
+        public string Path { get; set; }
     }
 }
