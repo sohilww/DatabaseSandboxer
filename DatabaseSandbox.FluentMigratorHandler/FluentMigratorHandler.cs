@@ -4,7 +4,8 @@ using DatabaseSandbox.core.Utility;
 
 namespace DatabaseSandbox.FluentMigrator
 {
-    public class FluentMigratorHandler : DatabaseSandboxHandler<FluentMigratorConfiguration>
+    public class FluentMigratorHandler :
+        DatabaseSandboxHandler<FluentMigratorConfiguration>
     {
         private readonly FluentMigratorConfiguration _configuration;
         private ConnectionStringBuilder _connectionStringBuilder;

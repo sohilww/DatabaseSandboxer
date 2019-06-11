@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Net.Http;
 using DatabaseSandbox.core;
 using DatabaseSandbox.core.Configurations;
@@ -13,14 +14,13 @@ namespace DatabaseSandbox.FluentMigrator.Test
     {
         private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
 
-        private string _migrationDllPath =
-            @"F:\Project\PAP\DatabaseSandboxer\DatabaseSandbox.FluentMigrator.Test\MigratorFile\FluentMigrator.dll";
-
+        private string _migrationDllPath;
         private SqlServerDatabase _sqlServerDatabase;
 
         public FluentDatabaseSandBoxTest()
         {
             _sqlServerDatabase = new SqlServerDatabase(_connectionString);
+            _migrationDllPath = Directory.GetCurrentDirectory() + @"\MigratorFile\FluentMigrator.dll";
         }
         [Fact]
         public void when_call_sandbox_on_httpClient_should_create_database_and_set_header()
