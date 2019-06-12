@@ -21,19 +21,6 @@ namespace DatabaseSandbox.Core.Test
         }
 
         [Fact]
-        public void should_create_database_with_specific_name()
-        {
-            var databaseName = DatabaseGenerator.NewName;
-            var result = _database.Create(databaseName);
-
-            result.Should().BeTrue();
-
-            DropDatabase(databaseName);
-        }
-
-        
-
-        [Fact]
         public void should_drop_database_with_specific_name()
         {
             var databaseName = DatabaseGenerator.NewName;

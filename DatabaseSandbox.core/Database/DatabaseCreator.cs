@@ -1,4 +1,6 @@
-﻿namespace DatabaseSandbox.Core
+﻿using System.Data.Common;
+
+namespace DatabaseSandbox.Core.Database
 {
     public abstract class DatabaseCreator
     {
@@ -9,8 +11,13 @@
             ConnectionString = connectionString;
         }
 
-        public abstract bool Create(string databaseName);
+        protected DatabaseCreator(DbConnection dbConnection)
+        {
+
+        }
+
+        public abstract void Create(string databaseName);
         public abstract bool IsExists(string databaseName);
-        public abstract bool Drop(string databaseName);
+        public abstract void Drop(string databaseName);
     }
 }
