@@ -5,11 +5,10 @@ using DatabaseSandbox.Core.Exceptions;
 
 namespace DatabaseSandbox.SQLServer
 {
-    public class SqlServerCreator : DatabaseCreator
+    public class SQLServerCreator : DatabaseCreator
     {
         private SqlConnection _sqlConnection;
-
-        public SqlServerCreator(string connectionString) : base(connectionString)
+        public SQLServerCreator(string connectionString) : base(connectionString)
         {
             _sqlConnection = new SqlConnection(ConnectionString);
             _sqlConnection.Open();

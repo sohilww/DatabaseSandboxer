@@ -14,11 +14,11 @@ namespace DatabaseSandbox.SQLServer.Test
         string _connectionstring =
             "data source=.;initial catalog=master;integrated security=true;";
 
-        private SqlServerCreator _database;
+        private SQLServerCreator _database;
 
         public SQLServerCreatorTest()
         {
-            _database = new SqlServerCreator(_connectionstring);
+            _database = new SQLServerCreator(_connectionstring);
         }
 
         [Fact]
