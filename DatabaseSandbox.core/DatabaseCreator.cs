@@ -1,10 +1,10 @@
 ﻿namespace DatabaseSandbox.core
 {
-    public abstract class DatabaseCreation
+    public abstract class DatabaseCreator
     {
         protected readonly string ConnectionString;
 
-        protected DatabaseCreation(string connectionString)
+        protected DatabaseCreator(string connectionString)
         {
             ConnectionString = connectionString;
         }

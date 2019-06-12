@@ -21,7 +21,5 @@ namespace DatabaseSandbox.Config.Autofac.Test
 
             resolver.Dispose();
         }
-        
-        
     }
 }

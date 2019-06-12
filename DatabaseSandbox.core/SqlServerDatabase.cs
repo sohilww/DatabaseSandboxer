@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 namespace DatabaseSandbox.core
 {
-    public class SqlServerDatabase : DatabaseCreation, IDisposable
+    public class SqlServerDatabase : DatabaseCreator, IDisposable
     {
         private SqlConnection _sqlConnection;
 
