@@ -17,6 +17,18 @@ namespace DatabaseSandbox.Config.Autofac
                 .InstancePerLifetimeScope();
         }
 
+        public void Register<TImplementation>()
+        {
+            _container.RegisterType<TImplementation>()
+                .InstancePerLifetimeScope();
+        }
+
+        public void Register(Type service, Type implementation)
+        {
+            _container.RegisterType(implementation).As(service)
+                .InstancePerLifetimeScope();
+        }
+
         public void RegisterSingleton<TService, TImplementation>() where TImplementation : TService
         {
             _container.RegisterType<TImplementation>().As<TService>()

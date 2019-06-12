@@ -2,11 +2,11 @@
 
 namespace DatabaseSandbox.Config.Autofac
 {
-    public class DatabaseSandboxAutofacModule:IDatabaseSandboxModule
+    public class DatabaseSandboxIocAutofacModule:IDatabaseSandboxIOCModule
     {
         private readonly ContainerBuilder _container;
 
-        public DatabaseSandboxAutofacModule(ContainerBuilder container)
+        public DatabaseSandboxIocAutofacModule(ContainerBuilder container)
         {
             _container = container;
         }
@@ -16,5 +16,7 @@ namespace DatabaseSandbox.Config.Autofac
         {
             return new AutoFacServiceRegistry(_container);
         }
+
+        
     }
 }

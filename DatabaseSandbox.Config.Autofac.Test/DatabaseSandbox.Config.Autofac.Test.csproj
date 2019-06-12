@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseSandbox.Config.Autofac\DatabaseSandbox.Config.Autofac.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.FluentMigratorHandler\DatabaseSandbox.FluentMigratorHandler.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,15 +7,24 @@ namespace DatabaseSandbox.Config.Autofac
         public static IServiceRegistry
             CreateServiceRegistry(this ContainerBuilder containerBuilder)
         {
-            var autofacModule = new DatabaseSandboxAutofacModule(containerBuilder);
+            var autofacModule = new DatabaseSandboxIocAutofacModule(containerBuilder);
             return autofacModule.Registry();
         }
 
         public static IResolver CreateResolver(this ContainerBuilder containerBuilder)
         {
-            var scope = containerBuilder.Build().BeginLifetimeScope();
-            var resolver = new AutofacResolver(scope);
+            RegisterResolver(containerBuilder);
+
+            var scope = containerBuilder.Build().BeginLifetimeScope();  
+            var resolver = scope.Resolve<IResolver>();
             return resolver;
+        }
+
+        private static void RegisterResolver(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<AutofacResolver>()
+                .As<IResolver>()
+                .SingleInstance();
         }
     }
 
