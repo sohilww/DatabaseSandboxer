@@ -1,5 +1,5 @@
 ﻿using DatabaseSandbox.Config;
-using DatabaseSandbox.core;
+using DatabaseSandbox.Core;
 
 namespace DatabaseSandbox.FluentMigrator
 {

@@ -1,6 +1,6 @@
-﻿using DatabaseSandbox.core;
-using System;
-using DatabaseSandbox.core.Utility;
+﻿using System;
+using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Utility;
 
 namespace DatabaseSandbox.FluentMigrator
 {
@@ -36,7 +36,7 @@ namespace DatabaseSandbox.FluentMigrator
 
         private string CreateNewDatabase(ConnectionStringBuilder connectionStringBuilder)
         {
-            string databaseName = Database.NewName;
+            string databaseName = DatabaseGenerator.NewName;
             var masterconnectionString = connectionStringBuilder.Build();
             var sqlServer = new SqlServerDatabase(masterconnectionString);
             sqlServer.Create(databaseName);

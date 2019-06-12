@@ -1,6 +1,6 @@
 using Autofac;
 using DatabaseSandbox.Config.Autofac.Test.Fakes;
-using DatabaseSandbox.core;
+using DatabaseSandbox.Core;
 using DatabaseSandbox.FluentMigrator;
 using FluentAssertions;
 using Xunit;

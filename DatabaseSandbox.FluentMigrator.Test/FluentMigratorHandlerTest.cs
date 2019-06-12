@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using DatabaseSandbox.core;
-using DatabaseSandbox.core.Configurations;
+using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Configurations;
 using Xunit;
 using DatabaseSandbox.FluentMigrator;
 using FluentAssertions;

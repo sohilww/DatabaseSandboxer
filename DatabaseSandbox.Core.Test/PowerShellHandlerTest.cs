@@ -1,6 +1,5 @@
 ﻿using System;
-using DatabaseSandbox.core;
-using DatabaseSandbox.core.Exceptions;
+using DatabaseSandbox.Core.Exceptions;
 using DatabaseSandbox.Core.Test.TestConstants;
 using FluentAssertions;
 using Xunit;

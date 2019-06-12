@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.Core
 {
     public static class DatabaseSandboxServiceLocator
     {
@@ -16,9 +16,9 @@ namespace DatabaseSandbox.core
             return (TSuper)(instance);
         }
 
-        public static bool RegisterService<TSuper>(object implementation)
+        public static void RegisterService<TSuper>(object implementation)
         {
-            return _services.TryAdd(typeof(TSuper),implementation);
+            _services.Add(typeof(TSuper),implementation);
         }
     }
 }

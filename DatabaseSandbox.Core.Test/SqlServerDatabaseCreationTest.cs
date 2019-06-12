@@ -1,6 +1,6 @@
 ﻿using System;
-using DatabaseSandbox.core;
 using DatabaseSandbox.Core.Test.TestConstants;
+using DatabaseSandbox.Core.Utility;
 using FluentAssertions;
 using Xunit;
 
@@ -23,7 +23,7 @@ namespace DatabaseSandbox.Core.Test
         [Fact]
         public void should_create_database_with_specific_name()
         {
-            var databaseName = Database.TestName;
+            var databaseName = DatabaseGenerator.NewName;
             var result = _database.Create(databaseName);
 
             result.Should().BeTrue();
@@ -36,7 +36,7 @@ namespace DatabaseSandbox.Core.Test
         [Fact]
         public void should_drop_database_with_specific_name()
         {
-            var databaseName = Database.TestName;
+            var databaseName = DatabaseGenerator.NewName;
             CreateDatabase(databaseName);
 
             

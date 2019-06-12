@@ -1,4 +1,4 @@
-﻿namespace DatabaseSandbox.core.Utility
+﻿namespace DatabaseSandbox.Core.Utility
 {
     public class HeaderNames
     {

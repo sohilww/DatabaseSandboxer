@@ -1,29 +1,23 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Management.Automation;
-using DatabaseSandbox.core.Exceptions;
+using DatabaseSandbox.Core.Exceptions;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.Core
 {
     public class PowerShellHandler
     {
         public void Execute(string command,string databaseName)
         {
-            if (IsScriptFile(command))
-                command = RetrieveCommandByReadingTheFile(command);
+            //if (IsScriptFile(command))
+            //    command = RetrieveCommandByReadingTheFile(command);
 
 
-            //Todo:Added this for passing manual test
-            command= command.Replace("{dbName}", databaseName);
-            ExecuteCommand(command);
+            ////Todo:Added this for passing manual test
+            //command= command.Replace("{dbName}", databaseName);
+            //ExecuteCommand(command);
         }
 
-        private static bool IsScriptFile(string command)
-        {
-            return File.Exists(command);
-        }
-
+        
         private string RetrieveCommandByReadingTheFile(string command)
         {
             return File.ReadAllText(command);
@@ -31,15 +25,15 @@ namespace DatabaseSandbox.core
 
         private void ExecuteCommand(string command)
         {
-            using (var powerShell = PowerShell.Create())
-            {
-                powerShell.AddScript(command);
-                powerShell.Invoke();
-                if (powerShell.Streams.Error.Any())
-                {
-                    throw new PowerShellExecutingException();
-                }
-            }
+//            using (var powerShell = PowerShell.Create())
+//            {
+//                powerShell.AddScript(command);
+//                powerShell.Invoke();
+//                if (powerShell.Streams.Error.Any())
+//                {
+//                    throw new PowerShellExecutingException();
+//                }
+//            }
         }
     }
 }

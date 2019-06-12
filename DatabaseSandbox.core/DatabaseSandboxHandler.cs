@@ -1,6 +1,6 @@
-﻿using DatabaseSandbox.core.Configurations;
+﻿using DatabaseSandbox.Core.Configurations;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.Core
 {
     public interface IDatabaseSandboxHandler
     {

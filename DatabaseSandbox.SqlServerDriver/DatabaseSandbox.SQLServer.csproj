@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="xunit" Version="2.4.1" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />

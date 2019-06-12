@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
-namespace DatabaseSandbox.core
+
+namespace DatabaseSandbox.Core
 {
     public class SqlServerDatabase : DatabaseCreator, IDisposable
     {

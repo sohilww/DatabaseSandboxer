@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Net.Http;
-using DatabaseSandbox.core;
-using DatabaseSandbox.core.Configurations;
-using DatabaseSandbox.core.Interfaces;
-using DatabaseSandbox.core.Utility;
+using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Configurations;
+using DatabaseSandbox.Core.Interfaces;
+using DatabaseSandbox.Core.Utility;
 using FluentAssertions;
 using Xunit;
 
