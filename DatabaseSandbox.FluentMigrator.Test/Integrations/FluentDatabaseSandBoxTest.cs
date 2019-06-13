@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using DatabaseSandbox.Core;
@@ -6,28 +7,29 @@ using DatabaseSandbox.Core.Configurations;
 using DatabaseSandbox.Core.Interfaces;
 using DatabaseSandbox.Core.Utility;
 using DatabaseSandbox.FluentMigrator.Factory;
+using DatabaseSandbox.SQLServer;
 using FluentAssertions;
 using Xunit;
 
-namespace DatabaseSandbox.FluentMigrator.Test
+namespace DatabaseSandbox.FluentMigrator.Test.Integrations
 {
     public class FluentDatabaseSandBoxTest
     {
         private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
 
         private string _migrationDllPath;
-        private SqlServerDatabase _sqlServerDatabase;
+        private SQLServerCreator _sqlServerDatabase;
 
         public FluentDatabaseSandBoxTest()
         {
-            _sqlServerDatabase = new SqlServerDatabase(_connectionString);
+            _sqlServerDatabase = new SQLServerCreator(_connectionString);
             _migrationDllPath = Directory.GetCurrentDirectory() + @"\MigratorFile\FluentMigrator.dll";
         }
         [Fact]
         public void when_call_sandbox_on_httpClient_should_create_database_and_set_header()
         {
-            var handler = CreateFluentMigratorHandler();
-            DatabaseSandboxServiceLocator.RegisterService<IDatabaseSandboxHandler>(handler);
+            CreateFluentMigratorHandler();
+
             var httpClient = new HttpClient();
 
             httpClient.SetSandboxHeader();
@@ -38,18 +40,26 @@ namespace DatabaseSandbox.FluentMigrator.Test
                 .GetValues(HeaderNames.DatabaseConnectionString).First();
             var dbExists = _sqlServerDatabase.IsExists(databaseName);
 
+            var driver = new SQLServerDriver(new SqlConnection(_connectionString));
+            var command = "IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES " +
+            "WHERE TABLE_NAME = 'Persons') SELECT 1";
+            var tableExists= driver.Exists(command);
+            tableExists.Should().BeTrue();
             databaseName.Should().NotBeNullOrEmpty();
             connectionString.Should().NotBeNullOrEmpty();
             dbExists.Should().BeTrue();
-            
+
             _sqlServerDatabase.Drop(databaseName);
         }
+
+
+
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {
             var config = CreateFluentMigratorConfiguration();
             var handler = FluentMigratorHandlerFactory.Create(config);
-            
+
             var httpClient = new HttpRequestMessage();
             httpClient.SetSandboxHeader();
 
@@ -65,6 +75,13 @@ namespace DatabaseSandbox.FluentMigrator.Test
             _sqlServerDatabase.Drop(databaseName);
         }
 
+
+        private FluentMigratorHandler CreateFluentMigratorHandler()
+        {
+            var configuration = CreateFluentMigratorConfiguration();
+            var handler = FluentMigratorHandlerFactory.Create(configuration);
+            return handler;
+        }
         private FluentMigratorConfiguration CreateFluentMigratorConfiguration()
         {
             var configuration = new FluentMigratorConfiguration()

@@ -12,7 +12,7 @@ namespace DatabaseSandbox.SQLServer
         private readonly SqlConnection _connection;
 
         public SQLServerDriver(DbConnection connection)
-        {
+        { 
             _connection = (SqlConnection)connection;
         }
         public void ExecuteCommand(string command)
@@ -30,6 +30,25 @@ namespace DatabaseSandbox.SQLServer
                 _connection.Close();
             }
             
+        }
+
+        public bool Exists(string command)
+        {
+            try
+            {
+                _connection.Open();
+                var sqlCommand=new SqlCommand(command,_connection);
+                var result= sqlCommand.ExecuteScalar();
+                return result != null;
+            }
+            catch (Exception exception)
+            {
+                throw new DatabaseDriverException(exception.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
         }
 
         private void Execute(string command)

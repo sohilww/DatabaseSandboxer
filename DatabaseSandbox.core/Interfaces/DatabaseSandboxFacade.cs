@@ -21,7 +21,7 @@ namespace DatabaseSandbox.Core.Interfaces
 
         private CreatedDatabaseInformation ExecuteHandler()
         {
-            var fluentMigratorHandler = DatabaseSandboxServiceLocator.GetService<IDatabaseSandboxHandler>();
+            var fluentMigratorHandler = DatabaseSandboxResolver.Current.Resolve<IDatabaseSandboxHandler>();
             var databaseInformation = fluentMigratorHandler.Execute();
             return databaseInformation;
         }

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DatabaseSandbox.Config.Autofac;
 using DatabaseSandbox.Core;
+using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator.Factory
 {
@@ -12,10 +13,15 @@ namespace DatabaseSandbox.FluentMigrator.Factory
             var serviceRegistry = containerBuilder.CreateServiceRegistry();
 
             FluentMigratorDependencyConfig.AddToIOC(serviceRegistry);
+
+            serviceRegistry.Register<FluentMigratorConfiguration>(config);
+            var serverDependecyConfig = new SQLServerDependecyConfig();
+            serverDependecyConfig.Registry(serviceRegistry);
+
             var resolver = containerBuilder.CreateResolver();
 
             var handler = resolver.Resolve<IDatabaseSandboxHandler>();
-
+            DatabaseSandboxResolver.SetResolver(resolver);
             return (FluentMigratorHandler)handler;
         }
     }

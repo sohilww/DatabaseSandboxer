@@ -1,5 +1,7 @@
 ﻿using DatabaseSandbox.Config;
 using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Database;
+using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator
 {
@@ -7,12 +9,11 @@ namespace DatabaseSandbox.FluentMigrator
     {
         public void Registry(IServiceRegistry serviceRegistry)
         {
-            serviceRegistry
-                .Register<FluentMigratorConfiguration>();
             serviceRegistry.
                 Register(typeof(IDatabaseSandboxHandler),
                     typeof(FluentMigratorHandler));
 
+            
             serviceRegistry.Register<ICommandExecutor,CommandExecutor>();
         }
 

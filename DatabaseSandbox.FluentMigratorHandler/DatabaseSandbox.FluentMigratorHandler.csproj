@@ -10,6 +10,7 @@
     <ProjectReference Include="..\DatabaseSandbox.Config.Autofac\DatabaseSandbox.Config.Autofac.csproj" />
     <ProjectReference Include="..\DatabaseSandbox.Config\DatabaseSandbox.Config.csproj" />
     <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.SqlServerDriver\DatabaseSandbox.SQLServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

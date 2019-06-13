@@ -1,4 +1,6 @@
-﻿namespace DatabaseSandbox.FluentMigrator
+﻿using System.Data.SqlClient;
+
+namespace DatabaseSandbox.FluentMigrator
 {
     internal class ConnectionStringBuilder
     {
@@ -16,9 +18,19 @@
 
         internal string Build(string dbName)
         {
-            return $"data source={_configuration.ConnectionString.DataSourcePath};" +
-                   $"initial catalog={dbName};" +
-                   $"integrated security=true; ";
+            var connectingStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = _configuration.ConnectionString.DataSourcePath,
+                InitialCatalog = dbName,
+                IntegratedSecurity = _configuration.ConnectionString.IntegratedSecurity
+            };
+
+            if (!connectingStringBuilder.IntegratedSecurity)
+            {
+                connectingStringBuilder.UserID = _configuration.ConnectionString.UserName;
+                connectingStringBuilder.Password = _configuration.ConnectionString.Password;
+            }
+            return connectingStringBuilder.ConnectionString;
         }
     }
     internal class FluentMigratorCommandGenerator
