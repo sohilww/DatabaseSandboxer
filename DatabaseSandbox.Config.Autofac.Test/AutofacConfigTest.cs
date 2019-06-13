@@ -31,7 +31,7 @@ namespace DatabaseSandbox.Config.Autofac.Test
             var containerBuilder=new ContainerBuilder();
             var serviceRegistry = containerBuilder.CreateServiceRegistry();
 
-            FluentMigratorConfig.AddToIOC(serviceRegistry);
+            FluentMigratorDependencyConfig.AddToIOC(serviceRegistry);
             var resolver = containerBuilder.CreateResolver();
 
             var handler = resolver.Resolve<IDatabaseSandboxHandler>();

@@ -5,6 +5,7 @@ using DatabaseSandbox.Core;
 using DatabaseSandbox.Core.Configurations;
 using DatabaseSandbox.Core.Interfaces;
 using DatabaseSandbox.Core.Utility;
+using DatabaseSandbox.FluentMigrator.Factory;
 using FluentAssertions;
 using Xunit;
 
@@ -46,10 +47,10 @@ namespace DatabaseSandbox.FluentMigrator.Test
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {
-            var handler = CreateFluentMigratorHandler();
-            DatabaseSandboxServiceLocator.RegisterService<IDatabaseSandboxHandler>(handler);
+            var config = CreateFluentMigratorConfiguration();
+            var handler = FluentMigratorHandlerFactory.Create(config);
+            
             var httpClient = new HttpRequestMessage();
-
             httpClient.SetSandboxHeader();
 
             var databaseName = httpClient.Headers
@@ -63,7 +64,8 @@ namespace DatabaseSandbox.FluentMigrator.Test
 
             _sqlServerDatabase.Drop(databaseName);
         }
-        private FluentMigratorHandler CreateFluentMigratorHandler()
+
+        private FluentMigratorConfiguration CreateFluentMigratorConfiguration()
         {
             var configuration = new FluentMigratorConfiguration()
             {
@@ -75,7 +77,7 @@ namespace DatabaseSandbox.FluentMigrator.Test
                     IntegratedSecurity = true
                 }
             };
-            return new FluentMigratorHandler(configuration);
+            return configuration;
         }
     }
 }

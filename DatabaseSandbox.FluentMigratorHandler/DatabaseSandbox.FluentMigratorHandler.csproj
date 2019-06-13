@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DatabaseSandbox.Config.Autofac\DatabaseSandbox.Config.Autofac.csproj" />
     <ProjectReference Include="..\DatabaseSandbox.Config\DatabaseSandbox.Config.csproj" />
     <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>C:\Users\s.karami\.nuget\packages\autofac\4.9.2\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

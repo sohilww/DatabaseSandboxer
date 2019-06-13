@@ -3,7 +3,7 @@ using DatabaseSandbox.Core;
 
 namespace DatabaseSandbox.FluentMigrator
 {
-    public class FluentMigratorConfig: IDatabaseSandboxComponentModule
+    public class FluentMigratorDependencyConfig: IDatabaseSandboxComponentModule
     {
         public void Registry(IServiceRegistry serviceRegistry)
         {
@@ -18,8 +18,8 @@ namespace DatabaseSandbox.FluentMigrator
 
         public static void AddToIOC(IServiceRegistry serviceRegistry)
         {
-            var f=new FluentMigratorConfig();
-            f.Registry(serviceRegistry);
+            var fluentMigratorDependencyConfig=new FluentMigratorDependencyConfig();
+            fluentMigratorDependencyConfig.Registry(serviceRegistry);
         }
     }
 }

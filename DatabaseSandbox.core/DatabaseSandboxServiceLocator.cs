@@ -5,6 +5,7 @@ namespace DatabaseSandbox.Core
 {
     public static class DatabaseSandboxServiceLocator
     {
+
         static DatabaseSandboxServiceLocator()
         {
             _services = new Dictionary<Type, object>();
