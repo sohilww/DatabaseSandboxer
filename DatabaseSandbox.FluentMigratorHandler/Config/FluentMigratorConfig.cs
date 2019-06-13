@@ -12,6 +12,8 @@ namespace DatabaseSandbox.FluentMigrator
             serviceRegistry.
                 Register(typeof(IDatabaseSandboxHandler),
                     typeof(FluentMigratorHandler));
+
+            serviceRegistry.Register<ICommandExecutor,CommandExecutor>();
         }
 
         public static void AddToIOC(IServiceRegistry serviceRegistry)

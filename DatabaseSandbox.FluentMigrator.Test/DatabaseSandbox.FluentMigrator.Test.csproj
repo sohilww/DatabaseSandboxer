@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="MigratorFile\CommandFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="MigratorFile\FluentMigrator.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

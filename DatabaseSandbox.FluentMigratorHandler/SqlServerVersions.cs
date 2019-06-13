@@ -1,6 +1,6 @@
 ﻿namespace DatabaseSandbox.FluentMigrator
 {
-    public static class SqlServerVersions
+    public static class SQLServerVersions
     {
         public const string Sql2008 = "sqlserver2008";
         public const string Sql2012 = "sqlserver2012";

@@ -27,7 +27,7 @@ namespace DatabaseSandbox.FluentMigrator.Test
             var configuration = new FluentMigratorConfiguration()
             {
                 MigrationClassLibraryPath = _migrationDllPath,
-                SqlServerVersion = SqlServerVersions.Sql2012,
+                SqlServerVersion = SQLServerVersions.Sql2012,
                 ConnectionString = new SqlServerDbSandboxConnectionString
                 {
                     DataSourcePath = ".",
