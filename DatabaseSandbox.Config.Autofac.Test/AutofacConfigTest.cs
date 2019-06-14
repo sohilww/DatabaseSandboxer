@@ -1,7 +1,5 @@
 using Autofac;
 using DatabaseSandbox.Config.Autofac.Test.Fakes;
-using DatabaseSandbox.Core;
-using DatabaseSandbox.FluentMigrator;
 using FluentAssertions;
 using Xunit;
 
@@ -23,20 +21,6 @@ namespace DatabaseSandbox.Config.Autofac.Test
             service.Should().NotBeNull();
 
             resolver.Dispose();
-        }
-
-        [Fact]
-        public void given_fluentMigratorConfig_when_add_config_to_autofac_then_resolve_fluentMigrator_Handler()
-        {
-            var containerBuilder=new ContainerBuilder();
-            var serviceRegistry = containerBuilder.CreateServiceRegistry();
-
-            FluentMigratorDependencyConfig.AddToIOC(serviceRegistry);
-            var resolver = containerBuilder.CreateResolver();
-
-            var handler = resolver.Resolve<IDatabaseSandboxHandler>();
-
-            handler.Should().NotBeNull();
         }
     }
 }

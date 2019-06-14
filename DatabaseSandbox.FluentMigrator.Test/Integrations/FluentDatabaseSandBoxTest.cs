@@ -54,22 +54,19 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {
-            var config = CreateFluentMigratorConfiguration();
-            var handler = FluentMigratorHandlerFactory.Create(config);
+            CreateFluentMigratorHandler();
 
             var httpClient = new HttpRequestMessage();
             httpClient.SetSandboxHeader();
 
-            var databaseName = httpClient.Headers
+            _databaseName = httpClient.Headers
                 .GetValues(HeaderNames.DatabaseName).First();
             var connectionString = httpClient.Headers
                 .GetValues(HeaderNames.DatabaseConnectionString).First();
-            var dbExists = _sqlServerDatabase.IsExists(databaseName);
-            databaseName.Should().NotBeNullOrEmpty();
+            var dbExists = _sqlServerDatabase.IsExists(_databaseName);
+            _databaseName.Should().NotBeNullOrEmpty();
             connectionString.Should().NotBeNullOrEmpty();
             dbExists.Should().BeTrue();
-
-            _sqlServerDatabase.Drop(databaseName);
         }
 
 
