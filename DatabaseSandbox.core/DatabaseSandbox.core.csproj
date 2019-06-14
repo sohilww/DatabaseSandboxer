@@ -29,4 +29,8 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseSandbox.Config\DatabaseSandbox.Config.csproj" />
+  </ItemGroup>
+
 </Project>

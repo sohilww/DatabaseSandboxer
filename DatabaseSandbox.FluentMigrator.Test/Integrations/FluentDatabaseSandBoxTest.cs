@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -13,12 +14,13 @@ using Xunit;
 
 namespace DatabaseSandbox.FluentMigrator.Test.Integrations
 {
-    public class FluentDatabaseSandBoxTest
+    public class FluentDatabaseSandBoxTest :IDisposable
     {
         private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
 
         private string _migrationDllPath;
         private SQLServerCreator _sqlServerDatabase;
+        private string _databaseName;
 
         public FluentDatabaseSandBoxTest()
         {
@@ -34,22 +36,22 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
 
             httpClient.SetSandboxHeader();
 
-            var databaseName = httpClient.DefaultRequestHeaders
+            _databaseName = httpClient.DefaultRequestHeaders
                 .GetValues(HeaderNames.DatabaseName).First();
             var connectionString = httpClient.DefaultRequestHeaders
                 .GetValues(HeaderNames.DatabaseConnectionString).First();
-            var dbExists = _sqlServerDatabase.IsExists(databaseName);
+            var dbExists = _sqlServerDatabase.IsExists(_databaseName);
 
             var driver = new SQLServerDriver(new SqlConnection(_connectionString));
             var command = "IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES " +
-            "WHERE TABLE_NAME = 'Persons') SELECT 1";
+            "WHERE TABLE_NAME = 'People') SELECT 1";
             var tableExists= driver.Exists(command);
             tableExists.Should().BeTrue();
-            databaseName.Should().NotBeNullOrEmpty();
+            _databaseName.Should().NotBeNullOrEmpty();
             connectionString.Should().NotBeNullOrEmpty();
             dbExists.Should().BeTrue();
 
-            _sqlServerDatabase.Drop(databaseName);
+            
         }
 
 
@@ -95,6 +97,11 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
                 }
             };
             return configuration;
+        }
+
+        public void Dispose()
+        {
+            _sqlServerDatabase.Drop(_databaseName);
         }
     }
 }

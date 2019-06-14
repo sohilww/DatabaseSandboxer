@@ -23,7 +23,10 @@ namespace DatabaseSandbox.FluentMigrator
             var newDbConnectionString = _connectionStringBuilder.Build(databaseName);
 
             var commandGenerator = new FluentMigratorCommandGenerator(_configuration,databaseName);
-            
+            var commandExecutor=new CommandExecutor();
+
+            commandExecutor.Execute(commandGenerator.GetCommand(_connectionStringBuilder.Build(databaseName)));
+
             return new CreatedDatabaseInformation()
             {
                 DbName = databaseName,
