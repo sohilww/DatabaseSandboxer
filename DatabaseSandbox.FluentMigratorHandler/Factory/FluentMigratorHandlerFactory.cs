@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DatabaseSandbox.Config.Autofac;
 using DatabaseSandbox.Core;
+using DatabaseSandbox.FluentMigrator.Config;
 using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator.Factory

@@ -7,6 +7,7 @@ using DatabaseSandbox.Core;
 using DatabaseSandbox.Core.Configurations;
 using DatabaseSandbox.Core.Interfaces;
 using DatabaseSandbox.Core.Utility;
+using DatabaseSandbox.FluentMigrator.Config;
 using DatabaseSandbox.FluentMigrator.Factory;
 using DatabaseSandbox.FluentMigrator.Test.TestConstants;
 using DatabaseSandbox.SQLServer;

@@ -1,4 +1,6 @@
-﻿namespace DatabaseSandbox.Core.Configurations
+﻿using DatabaseSandbox.Core.Configurations;
+
+namespace DatabaseSandbox.SQLServer
 {
     public class SqlServerDbSandboxConnectionString 
         : DbSandboxConnectionString

@@ -1,4 +1,6 @@
-﻿namespace DatabaseSandbox.FluentMigrator
+﻿using DatabaseSandbox.FluentMigrator.Config;
+
+namespace DatabaseSandbox.FluentMigrator
 {
     internal class FluentMigratorCommandGenerator
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using DatabaseSandbox.Core;
 using DatabaseSandbox.Core.Utility;
+using DatabaseSandbox.FluentMigrator.Config;
 using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator
@@ -15,7 +16,7 @@ namespace DatabaseSandbox.FluentMigrator
             :base(configuration)
         {
             _configuration = configuration;
-            _connectionStringBuilder = new ConnectionStringBuilder(_configuration);
+            _connectionStringBuilder = new ConnectionStringBuilder(_configuration.ConnectionString);
         }
         public override CreatedDatabaseInformation Execute()
         {

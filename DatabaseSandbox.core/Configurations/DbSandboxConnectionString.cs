@@ -8,9 +8,4 @@
 
         public string Password { get; set; }
     }
-
-    public class SeedDataScriptConfiguration
-    {
-        public string Path { get; set; }
-    }
 }
