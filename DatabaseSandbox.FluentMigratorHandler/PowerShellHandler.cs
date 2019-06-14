@@ -1,32 +1,14 @@
 ﻿using System.IO;
+using System.Linq;
+using System.Management.Automation;
+using DatabaseSandbox.Core;
 using DatabaseSandbox.Core.Exceptions;
 
 namespace DatabaseSandbox.FluentMigrator
 {
-    public class PowerShellHandler
+    public class PowerShellHandler :ICommandExecutor
     {
-        public void Execute(string command, string databaseName)
-        {
-            if (IsScriptFile(command))
-                command = RetrieveCommandByReadingTheFile(command);
-
-
-            //Todo:Added this for passing manual test
-            command = command.Replace("{dbName}", databaseName);
-            ExecuteCommand(command);
-        }
-
-        private static bool IsScriptFile(string command)
-        {
-            return File.Exists(command);
-        }
-
-        private string RetrieveCommandByReadingTheFile(string command)
-        {
-            return File.ReadAllText(command);
-        }
-
-        private void ExecuteCommand(string command)
+        public void Execute(string command)
         {
             using (var powerShell = PowerShell.Create())
             {
@@ -34,9 +16,16 @@ namespace DatabaseSandbox.FluentMigrator
                 powerShell.Invoke();
                 if (powerShell.Streams.Error.Any())
                 {
-                    throw new PowerShellExecutingException();
+                    throw new CommandExecutorException(powerShell.Streams.Error.First().Exception.Message);
                 }
             }
+        }
+        public void ExecuteFile(string commandPath)
+        {
+            if(!File.Exists(commandPath))
+                throw new FileNotFoundException(commandPath);
+            string command=File.ReadAllText(commandPath);
+            Execute(command);
         }
     }
 }

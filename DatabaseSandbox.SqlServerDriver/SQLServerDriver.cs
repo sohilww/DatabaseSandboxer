@@ -43,7 +43,7 @@ namespace DatabaseSandbox.SQLServer
             }
             catch (Exception exception)
             {
-                throw new DatabaseDriverException(exception.Message);
+                throw new DatabaseDriverException(exception);
             }
             finally
             {

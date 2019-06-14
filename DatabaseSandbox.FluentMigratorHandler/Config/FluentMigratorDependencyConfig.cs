@@ -14,7 +14,7 @@ namespace DatabaseSandbox.FluentMigrator
                     typeof(FluentMigratorHandler));
 
             
-            serviceRegistry.Register<ICommandExecutor,CommandExecutor>();
+            serviceRegistry.Register<ICommandExecutor,PowerShellHandler>();
         }
 
         public static void AddToIOC(IServiceRegistry serviceRegistry)

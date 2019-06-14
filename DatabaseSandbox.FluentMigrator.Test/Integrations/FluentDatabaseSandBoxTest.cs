@@ -42,7 +42,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
                 .GetValues(HeaderNames.DatabaseConnectionString).First();
             var dbExists = _sqlServerDatabase.IsExists(_databaseName);
 
-            var driver = new SQLServerDriver(new SqlConnection(_connectionString));
+            var driver = new SQLServerDriver(new SqlConnection(connectionString));
             var command = "IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES " +
             "WHERE TABLE_NAME = 'People') SELECT 1";
             var tableExists= driver.Exists(command);
@@ -50,12 +50,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
             _databaseName.Should().NotBeNullOrEmpty();
             connectionString.Should().NotBeNullOrEmpty();
             dbExists.Should().BeTrue();
-
-            
         }
-
-
-
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {

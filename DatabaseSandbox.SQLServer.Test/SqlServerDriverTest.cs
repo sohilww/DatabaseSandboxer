@@ -33,5 +33,18 @@ namespace DatabaseSandbox.SQLServer.Test
 
             action.Should().Throw<DatabaseDriverException>();
         }
+
+        [Fact]
+        public void should_run_exists_command()
+        {
+            var sqlConnection=new SqlConnection(_connectionstring);
+            var sqlServerDriver=new SQLServerDriver(sqlConnection);
+            var commandText = "SELECT name FROM master.dbo.sysdatabases " +
+                              $" WHERE name = 'master'";
+
+            var exists = sqlServerDriver.Exists(commandText);
+
+            exists.Should().BeTrue();
+        }
     }
 }

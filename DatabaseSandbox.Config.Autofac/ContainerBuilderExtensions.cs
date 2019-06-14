@@ -15,7 +15,8 @@ namespace DatabaseSandbox.Config.Autofac
         {
             RegisterResolver(containerBuilder);
 
-            var scope = containerBuilder.Build().BeginLifetimeScope();  
+            var scope = containerBuilder.Build()
+                .BeginLifetimeScope();  
             var resolver = scope.Resolve<IResolver>();
             return resolver;
         }
