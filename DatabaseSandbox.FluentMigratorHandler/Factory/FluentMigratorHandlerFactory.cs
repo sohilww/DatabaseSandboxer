@@ -7,7 +7,7 @@ namespace DatabaseSandbox.FluentMigrator.Factory
 {
     public class FluentMigratorHandlerFactory
     {
-        public static FluentMigratorHandler Create(FluentMigratorConfiguration config)
+        public static FluentMigratorHandler CreateAndConfigIOC(FluentMigratorConfiguration config)
         {
             var containerBuilder = new ContainerBuilder();
             var serviceRegistry = containerBuilder.CreateServiceRegistry();
