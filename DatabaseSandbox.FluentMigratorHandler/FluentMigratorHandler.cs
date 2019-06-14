@@ -11,27 +11,28 @@ namespace DatabaseSandbox.FluentMigrator
         DatabaseSandboxHandler<FluentMigratorConfiguration>
     {
         private readonly FluentMigratorConfiguration _configuration;
-        private IConnectionStringBuilder _connectionStringBuilder;
+        private readonly IConnectionStringBuilder _connectionStringBuilder;
         private readonly DatabaseCreator _databaseCreator;
+        private readonly ICommandExecutor _commandExecutor;
 
         public FluentMigratorHandler(FluentMigratorConfiguration configuration,
             IConnectionStringBuilder connectionStringBuilder,
-            DatabaseCreator databaseCreator)
+            DatabaseCreator databaseCreator,
+            ICommandExecutor commandExecutor)
             :base(configuration)
         {
             _configuration = configuration;
             _connectionStringBuilder = connectionStringBuilder;
             _databaseCreator = databaseCreator;
+            _commandExecutor = commandExecutor;
         }
         public override CreatedDatabaseInformation Execute()
         {
             var databaseName= CreateNewDatabase();
             var newDbConnectionString = _connectionStringBuilder.Build(databaseName);
 
-            var commandGenerator = new FluentMigratorCommandGenerator(_configuration,databaseName);
-            var commandExecutor=new PowerShellHandler();
-
-            commandExecutor.Execute(commandGenerator.GetCommand(_connectionStringBuilder.Build(databaseName)));
+            var commandGenerator = new FluentMigratorCommandGenerator(_configuration);
+            _commandExecutor.Execute(commandGenerator.GetCommand(newDbConnectionString));
 
             return new CreatedDatabaseInformation()
             {

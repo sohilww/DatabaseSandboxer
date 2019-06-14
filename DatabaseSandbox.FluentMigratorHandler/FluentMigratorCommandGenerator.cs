@@ -5,12 +5,10 @@ namespace DatabaseSandbox.FluentMigrator
     internal class FluentMigratorCommandGenerator
     {
         private readonly FluentMigratorConfiguration _configuration;
-        private readonly string _databaseName;
-
-        internal FluentMigratorCommandGenerator(FluentMigratorConfiguration configuration, string databaseName)
+        
+        internal FluentMigratorCommandGenerator(FluentMigratorConfiguration configuration)
         {
             _configuration = configuration;
-            _databaseName = databaseName;
         }
         //Todo:priority 5 separate command building
         internal string GetCommand(string newDbConnectionString)
