@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using DatabaseSandbox.Core.Utility;
 using DatabaseSandbox.SQLServer;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -13,7 +14,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.TestConstants
                 string connectionString)
         {
             var databaseName= assertions.Subject;
-            var sqlServerCreator=new SQLServerCreator(connectionString);
+            var sqlServerCreator=new SQLServerCreator(StubConnectionStringBuilder.Create());
             var isExists= sqlServerCreator.IsExists(databaseName) 
                           && !string.IsNullOrEmpty(databaseName);
 

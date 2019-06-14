@@ -1,5 +1,6 @@
 ﻿using System;
 using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Database;
 using DatabaseSandbox.Core.Utility;
 using DatabaseSandbox.FluentMigrator.Config;
 using DatabaseSandbox.SQLServer;
@@ -10,17 +11,21 @@ namespace DatabaseSandbox.FluentMigrator
         DatabaseSandboxHandler<FluentMigratorConfiguration>
     {
         private readonly FluentMigratorConfiguration _configuration;
-        private ConnectionStringBuilder _connectionStringBuilder;
+        private IConnectionStringBuilder _connectionStringBuilder;
+        private readonly DatabaseCreator _databaseCreator;
 
-        public FluentMigratorHandler(FluentMigratorConfiguration configuration)
+        public FluentMigratorHandler(FluentMigratorConfiguration configuration,
+            IConnectionStringBuilder connectionStringBuilder,
+            DatabaseCreator databaseCreator)
             :base(configuration)
         {
             _configuration = configuration;
-            _connectionStringBuilder = new ConnectionStringBuilder(_configuration.ConnectionString);
+            _connectionStringBuilder = connectionStringBuilder;
+            _databaseCreator = databaseCreator;
         }
         public override CreatedDatabaseInformation Execute()
         {
-            var databaseName= CreateNewDatabase(_connectionStringBuilder);
+            var databaseName= CreateNewDatabase();
             var newDbConnectionString = _connectionStringBuilder.Build(databaseName);
 
             var commandGenerator = new FluentMigratorCommandGenerator(_configuration,databaseName);
@@ -35,12 +40,10 @@ namespace DatabaseSandbox.FluentMigrator
             };
         }
 
-        private string CreateNewDatabase(ConnectionStringBuilder connectionStringBuilder)
+        private string CreateNewDatabase()
         {
             string databaseName = DatabaseGenerator.NewName;
-            var masterconnectionString = connectionStringBuilder.Build();
-            var sqlServer = new SQLServerCreator(masterconnectionString);
-            sqlServer.Create(databaseName);
+            _databaseCreator.Create(databaseName);
             return databaseName;
 
         }

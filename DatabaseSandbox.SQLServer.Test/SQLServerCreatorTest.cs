@@ -9,16 +9,11 @@ namespace DatabaseSandbox.SQLServer.Test
 {
     public class SQLServerCreatorTest
     {
-        private string _connectionString;
-
-        string _connectionstring =
-            "data source=.;initial catalog=master;integrated security=true;";
-
         private SQLServerCreator _database;
 
         public SQLServerCreatorTest()
         {
-            _database = new SQLServerCreator(_connectionstring);
+            _database = new SQLServerCreator(StubConnectionStringBuilder.Create());
         }
 
         [Fact]

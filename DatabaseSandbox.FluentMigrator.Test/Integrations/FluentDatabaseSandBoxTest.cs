@@ -26,7 +26,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
 
         public FluentDatabaseSandBoxTest()
         {
-            _sqlServerDatabase = new SQLServerCreator(_connectionString);
+            _sqlServerDatabase = new SQLServerCreator(StubConnectionStringBuilder.Create());
             _migrationDllPath = Directory.GetCurrentDirectory() + @"\MigratorFile\FluentMigrator.dll";
             CreateFluentMigratorHandler();
         }

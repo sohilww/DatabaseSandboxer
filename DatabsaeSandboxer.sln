@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandboxer.Xunit", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.Core", "DatabaseSandbox.core\DatabaseSandbox.Core.csproj", "{25DB3307-3896-4230-AA6A-8D465647E03B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.Core.Test", "DatabaseSandbox.Core.Test\DatabaseSandbox.Core.Test.csproj", "{42918F66-3B98-42AA-A64F-4EFC595312FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.Core.Utility", "DatabaseSandbox.Core.Test\DatabaseSandbox.Core.Utility.csproj", "{42918F66-3B98-42AA-A64F-4EFC595312FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71CB5980-E387-4B45-9ADE-EF9EFC676C8F}"
 EndProject
@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.Config.Auto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.SQLServer", "DatabaseSandbox.SqlServerDriver\DatabaseSandbox.SQLServer.csproj", "{FBD4BD4F-2074-4752-BF17-BCBD568DAB5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSandbox.SQLServer.Test", "DatabaseSandbox.SQLServer.Test\DatabaseSandbox.SQLServer.Test.csproj", "{EB310326-ED22-462D-AA5E-90B6A8DE036B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseSandbox.SQLServer.Test", "DatabaseSandbox.SQLServer.Test\DatabaseSandbox.SQLServer.Test.csproj", "{EB310326-ED22-462D-AA5E-90B6A8DE036B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

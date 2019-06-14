@@ -14,7 +14,7 @@ namespace DatabaseSandbox.SQLServer.Test
                 IntegratedSecurity = true
             };
 
-            var connectionStringBuilder = new ConnectionStringBuilder(connectionStringConfiguration);
+            var connectionStringBuilder = new SqlServerConnectionStringBuilder(connectionStringConfiguration);
             var connectionString = connectionStringBuilder.Build();
             
             connectionString.Should().Contain("Data Source=.");
@@ -32,7 +32,7 @@ namespace DatabaseSandbox.SQLServer.Test
                 Password = "123456",
             };
 
-            var connectionStringBuilder = new ConnectionStringBuilder(connectionStringConfiguration);
+            var connectionStringBuilder = new SqlServerConnectionStringBuilder(connectionStringConfiguration);
             var connectionString = connectionStringBuilder.Build();
 
             connectionString.Should().Contain("Data Source=.");

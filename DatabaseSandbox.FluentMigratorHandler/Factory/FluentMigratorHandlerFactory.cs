@@ -16,6 +16,8 @@ namespace DatabaseSandbox.FluentMigrator.Factory
             FluentMigratorDependencyConfig.AddToIOC(serviceRegistry);
 
             serviceRegistry.Register<FluentMigratorConfiguration>(config);
+            serviceRegistry.Register<SqlServerDbSandboxConnectionString>(config.ConnectionString);
+
             var serverDependecyConfig = new SQLServerDependecyConfig();
             serverDependecyConfig.Registry(serviceRegistry);
 

@@ -1,12 +1,14 @@
 ﻿using System.Data.SqlClient;
+using DatabaseSandbox.Core.Database;
 
 namespace DatabaseSandbox.SQLServer
 {
-    public class ConnectionStringBuilder
+    public class SqlServerConnectionStringBuilder:
+        IConnectionStringBuilder
     {
         private readonly SqlServerDbSandboxConnectionString _connectionString;
         
-        public ConnectionStringBuilder(SqlServerDbSandboxConnectionString connectionString)
+        public SqlServerConnectionStringBuilder(SqlServerDbSandboxConnectionString connectionString)
         {
             _connectionString = connectionString;
         }

@@ -4,12 +4,7 @@ namespace DatabaseSandbox.Core.Database
 {
     public abstract class DatabaseCreator
     {
-        protected readonly string ConnectionString;
-
-        protected DatabaseCreator(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
+        protected DatabaseCreator(){}
 
         protected DatabaseCreator(DbConnection dbConnection)
         {

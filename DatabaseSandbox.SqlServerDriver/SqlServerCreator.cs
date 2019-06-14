@@ -8,9 +8,9 @@ namespace DatabaseSandbox.SQLServer
     public class SQLServerCreator : DatabaseCreator
     {
         private SqlConnection _sqlConnection;
-        public SQLServerCreator(string connectionString) : base(connectionString)
+        public SQLServerCreator(IConnectionStringBuilder connectionStringBuilder)
         {
-            _sqlConnection = new SqlConnection(ConnectionString);
+            _sqlConnection = new SqlConnection(connectionStringBuilder.Build());
             _sqlConnection.Open();
         }
         public override void Create(string databaseName)
