@@ -4,17 +4,18 @@ namespace DatabaseSandbox.Core.Interfaces
 {
     public static class HttpClientExtension
     {
-        public static void SetSandboxHeader(this HttpClient httpClient)
+        public static CreatedDatabaseInformation SetSandboxHeader(this HttpClient httpClient)
         {
             var databaseSandboxFacade = new DatabaseSandboxFacade();
-            databaseSandboxFacade
+            return databaseSandboxFacade
                 .ExecuteSandbox(httpClient);
         }
-        public static void SetSandboxHeader(this HttpRequestMessage httpRequestMessage)
+        public static CreatedDatabaseInformation SetSandboxHeader(this HttpRequestMessage httpRequestMessage)
         {
             var databaseSandboxFacade = new DatabaseSandboxFacade();
-            databaseSandboxFacade
+            return databaseSandboxFacade
                 .ExecuteSandbox(httpRequestMessage);
+
         }
 
     }

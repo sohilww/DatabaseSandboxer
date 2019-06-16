@@ -7,7 +7,6 @@ namespace DatabaseSandbox.Core
         CreatedDatabaseInformation Execute();
     }
 
-    //Todo:priority 3: put where conditions
     public abstract class DatabaseSandboxHandler<TConfiguration> :IDatabaseSandboxHandler
         where TConfiguration : ISandboxConfiguration
     {

@@ -35,7 +35,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
         {
             var httpClient = new HttpClient();
 
-            httpClient.SetSandboxHeader();
+            var databaseInformation= httpClient.SetSandboxHeader();
 
             _databaseName = httpClient.DefaultRequestHeaders
                 .GetValues(HeaderNames.DatabaseName).First();
@@ -44,12 +44,14 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
             _databaseName.Should()
                 .ExistDatabaseWithThatName(connectionString);
             _databaseName.Should().HaveSchema(connectionString);
+            _databaseName.Should().BeSameAs(databaseInformation.DbName);
+            connectionString.Should().BeSameAs(databaseInformation.ConnectionString);
         }
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {
             var httpClient = new HttpRequestMessage();
-            httpClient.SetSandboxHeader();
+            var databaseInformation= httpClient.SetSandboxHeader();
 
             _databaseName = httpClient.Headers
                 .GetValues(HeaderNames.DatabaseName).First();
@@ -59,6 +61,8 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
             _databaseName.Should()
                 .ExistDatabaseWithThatName(connectionString);
             _databaseName.Should().HaveSchema(connectionString);
+            _databaseName.Should().BeSameAs(databaseInformation.DbName);
+            connectionString.Should().BeSameAs(databaseInformation.ConnectionString);
         }
         private void CreateFluentMigratorHandler()
         {
