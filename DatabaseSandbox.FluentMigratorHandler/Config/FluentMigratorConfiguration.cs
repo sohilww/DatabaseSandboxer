@@ -1,7 +1,7 @@
-﻿using DatabaseSandbox.core;
-using DatabaseSandbox.core.Configurations;
+﻿using DatabaseSandbox.Core.Configurations;
+using DatabaseSandbox.SQLServer;
 
-namespace DatabaseSandbox.FluentMigrator
+namespace DatabaseSandbox.FluentMigrator.Config
 {
     public class FluentMigratorConfiguration : 
         ISandboxConfiguration<SqlServerDbSandboxConnectionString, SeedDataScriptConfiguration>

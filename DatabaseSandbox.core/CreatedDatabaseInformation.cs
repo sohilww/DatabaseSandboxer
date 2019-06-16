@@ -1,4 +1,4 @@
-﻿namespace DatabaseSandbox.core
+﻿namespace DatabaseSandbox.Core
 {
     public class CreatedDatabaseInformation
     {

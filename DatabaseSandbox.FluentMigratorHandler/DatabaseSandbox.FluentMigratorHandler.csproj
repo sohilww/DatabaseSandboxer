@@ -7,7 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.core.csproj" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseSandbox.Config.Autofac\DatabaseSandbox.Config.Autofac.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.Config\DatabaseSandbox.Config.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.SqlServerDriver\DatabaseSandbox.SQLServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>C:\Users\s.karami\.nuget\packages\autofac\4.9.2\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

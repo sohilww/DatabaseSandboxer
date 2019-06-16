@@ -1,6 +1,9 @@
-﻿using DatabaseSandbox.core;
-using System;
-using DatabaseSandbox.core.Utility;
+﻿using System;
+using DatabaseSandbox.Core;
+using DatabaseSandbox.Core.Database;
+using DatabaseSandbox.Core.Utility;
+using DatabaseSandbox.FluentMigrator.Config;
+using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator
 {
@@ -8,24 +11,28 @@ namespace DatabaseSandbox.FluentMigrator
         DatabaseSandboxHandler<FluentMigratorConfiguration>
     {
         private readonly FluentMigratorConfiguration _configuration;
-        private ConnectionStringBuilder _connectionStringBuilder;
+        private readonly IConnectionStringBuilder _connectionStringBuilder;
+        private readonly DatabaseCreator _databaseCreator;
+        private readonly ICommandExecutor _commandExecutor;
 
-        public FluentMigratorHandler(FluentMigratorConfiguration configuration)
+        public FluentMigratorHandler(FluentMigratorConfiguration configuration,
+            IConnectionStringBuilder connectionStringBuilder,
+            DatabaseCreator databaseCreator,
+            ICommandExecutor commandExecutor)
             :base(configuration)
         {
             _configuration = configuration;
-            _connectionStringBuilder = new ConnectionStringBuilder(_configuration);
+            _connectionStringBuilder = connectionStringBuilder;
+            _databaseCreator = databaseCreator;
+            _commandExecutor = commandExecutor;
         }
         public override CreatedDatabaseInformation Execute()
         {
-            var databaseName= CreateNewDatabase(_connectionStringBuilder);
+            var databaseName= CreateNewDatabase();
             var newDbConnectionString = _connectionStringBuilder.Build(databaseName);
 
-            var commandGenerator = new FluentMigratorCommandGenerator(_configuration,databaseName);
-            var command = commandGenerator.GetCommand(newDbConnectionString);
-
-            var powerShellHandler = new PowerShellHandler();
-            powerShellHandler.Execute(command,databaseName);
+            var commandGenerator = new FluentMigratorCommandGenerator(_configuration);
+            _commandExecutor.Execute(commandGenerator.GetCommand(newDbConnectionString));
 
             return new CreatedDatabaseInformation()
             {
@@ -34,12 +41,10 @@ namespace DatabaseSandbox.FluentMigrator
             };
         }
 
-        private string CreateNewDatabase(ConnectionStringBuilder connectionStringBuilder)
+        private string CreateNewDatabase()
         {
-            string databaseName = Database.NewName;
-            var masterconnectionString = connectionStringBuilder.Build();
-            var sqlServer = new SqlServerDatabase(masterconnectionString);
-            sqlServer.Create(databaseName);
+            string databaseName = DatabaseGenerator.NewName;
+            _databaseCreator.Create(databaseName);
             return databaseName;
 
         }

@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace DatabaseSandbox.core.Interfaces
+namespace DatabaseSandbox.Core.Interfaces
 {
     public class DatabaseSandboxFacade
     {
@@ -21,7 +21,7 @@ namespace DatabaseSandbox.core.Interfaces
 
         private CreatedDatabaseInformation ExecuteHandler()
         {
-            var fluentMigratorHandler = DatabaseSandboxServiceLocator.GetService<IDatabaseSandboxHandler>();
+            var fluentMigratorHandler = DatabaseSandboxResolver.Current.Resolve<IDatabaseSandboxHandler>();
             var databaseInformation = fluentMigratorHandler.Execute();
             return databaseInformation;
         }

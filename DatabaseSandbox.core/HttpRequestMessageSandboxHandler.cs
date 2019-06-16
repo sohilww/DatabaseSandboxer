@@ -1,8 +1,7 @@
-﻿using System;
-using System.Net.Http;
-using DatabaseSandbox.core.Utility;
+﻿using System.Net.Http;
+using DatabaseSandbox.Core.Utility;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.Core
 {
     internal class HttpRequestMessageSandboxHandler
     {

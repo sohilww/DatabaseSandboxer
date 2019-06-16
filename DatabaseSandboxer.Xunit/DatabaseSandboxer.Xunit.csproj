@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.core.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />
   </ItemGroup>
 
 </Project>

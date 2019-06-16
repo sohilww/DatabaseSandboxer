@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
-using DatabaseSandbox.core.Utility;
+using DatabaseSandbox.Core.Utility;
 
-namespace DatabaseSandbox.core
+namespace DatabaseSandbox.Core
 {
     public class HttpSandBoxHandler
     {

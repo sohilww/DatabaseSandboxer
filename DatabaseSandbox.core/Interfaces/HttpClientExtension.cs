@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace DatabaseSandbox.core.Interfaces
+namespace DatabaseSandbox.Core.Interfaces
 {
     public static class HttpClientExtension
     {

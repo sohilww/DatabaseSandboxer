@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>DatabaseSandbox.Core.Utility</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.core.csproj" />
+    <ProjectReference Include="..\DatabaseSandbox.core\DatabaseSandbox.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

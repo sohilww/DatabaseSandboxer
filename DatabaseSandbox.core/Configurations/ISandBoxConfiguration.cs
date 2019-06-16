@@ -1,4 +1,4 @@
-﻿namespace DatabaseSandbox.core.Configurations
+﻿namespace DatabaseSandbox.Core.Configurations
 {
     public interface ISandboxConfiguration { }
     public interface ISandboxConfiguration<TConnectionString, TSeedDataConfiguration>

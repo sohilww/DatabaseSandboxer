@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Reflection;
-using DatabaseSandbox.core;
-using DatabaseSandbox.core.Interfaces;
-using DatabaseSandbox.core.Utility;
+using DatabaseSandbox.Core.Interfaces;
+using DatabaseSandbox.Core.Utility;
 using Xunit.Sdk;
 
 namespace DatabaseSandboxer.Xunit
@@ -37,7 +36,7 @@ namespace DatabaseSandboxer.Xunit
             (string connectionString,
             string migrationPath)
         {
-            _databaseName = Database.NewName;
+            _databaseName = DatabaseGenerator.NewName;
         }
 
 

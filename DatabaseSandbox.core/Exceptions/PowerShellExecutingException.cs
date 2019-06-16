@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DatabaseSandbox.core.Exceptions
+namespace DatabaseSandbox.Core.Exceptions
 {
     public class PowerShellExecutingException : Exception
     {

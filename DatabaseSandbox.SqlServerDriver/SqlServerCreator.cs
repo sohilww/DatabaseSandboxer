@@ -1,58 +1,63 @@
 ﻿using System;
 using System.Data.SqlClient;
-namespace DatabaseSandbox.core
+using DatabaseSandbox.Core.Database;
+using DatabaseSandbox.Core.Exceptions;
+
+namespace DatabaseSandbox.SQLServer
 {
-    public class SqlServerDatabase : DatabaseCreation, IDisposable
+    public class SQLServerCreator : DatabaseCreator
     {
         private SqlConnection _sqlConnection;
-
-        public SqlServerDatabase(string connectionString):base(connectionString)
+        public SQLServerCreator(IConnectionStringBuilder connectionStringBuilder)
         {
-            _sqlConnection = new SqlConnection(ConnectionString);
+            _sqlConnection = new SqlConnection(connectionStringBuilder.Build());
             _sqlConnection.Open();
         }
-        public override bool Create(string databaseName)
+        public override void Create(string databaseName)
         {
+            try
+            {
+                ExecuteCreateDatabase(databaseName);
+            }
+            catch (Exception exception)
+            {
+                throw new DatabaseCreationException(exception.Message);
+            }
+        }
 
+        private void ExecuteCreateDatabase(string databaseName)
+        {
             if (IsExists(databaseName))
                 Drop(databaseName);
-
-
             var command = new
                 SqlCommand($"create database [{databaseName}]", _sqlConnection);
 
             command.ExecuteNonQuery();
-
-            return true;
-
-
         }
 
         public override bool IsExists(string databaseName)
         {
             var commandText = "SELECT name FROM master.dbo.sysdatabases " +
-                     $" WHERE name = '{databaseName}'";
+                              $" WHERE name = '{databaseName}'";
 
             var existsCommand = new SqlCommand(commandText, _sqlConnection);
             var exist = existsCommand.ExecuteScalar();
             return exist != null;
         }
 
-        public override bool Drop(string databaseName)
+        public override void Drop(string databaseName)
         {
             CloseConnections(databaseName);
             var commandText = $"Drop Database [{databaseName}]";
             var existsCommand = new SqlCommand(commandText, _sqlConnection);
+            existsCommand.ExecuteScalar();
 
-            var exist = existsCommand.ExecuteScalar();
-
-            return exist != null;
         }
 
         private void CloseConnections(string databaseName)
         {
             var commandText = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-            var existsCommand=new SqlCommand(commandText,_sqlConnection);
+            var existsCommand = new SqlCommand(commandText, _sqlConnection);
 
             existsCommand.ExecuteNonQuery();
         }
