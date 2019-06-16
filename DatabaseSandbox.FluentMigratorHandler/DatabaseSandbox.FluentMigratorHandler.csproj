@@ -4,7 +4,28 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>DatabaseSandbox.FluentMigrator</RootNamespace>
     <AssemblyName>DatabaseSandbox.FluentMigrator</AssemblyName>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <PackageId>DatbaseSandboxer.FluentMigrator</PackageId>
+    <Authors>sohil_ww</Authors>
+    <PackageDescription>
+      With this packages you can create database for each http call and create sandbox for test
+    </PackageDescription>
+    <PackageTags>
+      databaseSandbox,sandbox,sandboxer,databaseSandboxer
+    </PackageTags>
+    <IncludeSource>true</IncludeSource>
+    <RepositoryUrl>
+      ttps://github.com/sohilww/DatabaseSandboxer
+    </RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.1" />
