@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0</Version>
+    <AssemblyVersion>2.1.1.0</AssemblyVersion>
+    <FileVersion>2.1.1.0</FileVersion>
+    <Version>2.1.1</Version>
     <Product>DatabaseSandbox.Core</Product>
     <AssemblyName>DatabaseSandbox.Core</AssemblyName>
     <RootNamespace>DatabaseSandbox.Core</RootNamespace>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>Https://github.com/sohilww/DatabaseSandboxer</PackageProjectUrl>
+    <IncludeReferencedProjects>true</IncludeReferencedProjects>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,7 +23,7 @@
     <PackageTags>databaseSandbox,sandbox,sandboxer,databaseSandboxer
 </PackageTags>
     <IncludeSource>true</IncludeSource>
-    <RepositoryUrl>ttps://github.com/sohilww/DatabaseSandboxer
+    <RepositoryUrl>Https://github.com/sohilww/DatabaseSandboxer
 </RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
