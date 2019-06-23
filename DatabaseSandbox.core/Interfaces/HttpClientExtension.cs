@@ -10,11 +10,18 @@ namespace DatabaseSandbox.Core.Interfaces
             return databaseSandboxFacade
                 .ExecuteSandbox(httpClient);
         }
-        public static CreatedDatabaseInformation SetSandboxHeader(this HttpRequestMessage httpRequestMessage)
+        public static CreatedDatabaseInformation SetSandboxHeader(this HttpClient httpClient,string databaseName)
         {
             var databaseSandboxFacade = new DatabaseSandboxFacade();
             return databaseSandboxFacade
-                .ExecuteSandbox(httpRequestMessage);
+                .ExecuteSandbox(httpClient,databaseName);
+        }
+        public static CreatedDatabaseInformation SetSandboxHeader(this HttpRequestMessage httpRequestMessage,
+            string databaseName=null)
+        {
+            var databaseSandboxFacade = new DatabaseSandboxFacade();
+            return databaseSandboxFacade
+                .ExecuteSandbox(httpRequestMessage,databaseName);
 
         }
 

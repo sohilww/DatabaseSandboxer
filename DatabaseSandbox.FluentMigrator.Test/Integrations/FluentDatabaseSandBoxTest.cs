@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using DatabaseSandbox.Core;
-using DatabaseSandbox.Core.Configurations;
 using DatabaseSandbox.Core.Interfaces;
 using DatabaseSandbox.Core.Utility;
 using DatabaseSandbox.FluentMigrator.Config;
@@ -47,6 +44,45 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
             _databaseName.Should().BeSameAs(databaseInformation.DbName);
             connectionString.Should().BeSameAs(databaseInformation.ConnectionString);
         }
+
+        [Fact]
+        public void
+            when_call_sandbox_on_httpClient_with_databaseName_should_generate_connectionString_and_must_not_create_database()
+        {
+            var httpClient=new HttpClient();
+            var databaseName = DatabaseGenerator.NewName;
+            CreateDatabase(databaseName);
+
+            var databaseInformation = httpClient.SetSandboxHeader(databaseName);
+
+            _databaseName = httpClient.DefaultRequestHeaders
+                .GetValues(HeaderNames.DatabaseName).First();
+            var connectionString = httpClient.DefaultRequestHeaders
+                .GetValues(HeaderNames.DatabaseConnectionString).First();
+
+            _databaseName.Should().BeSameAs(databaseName);
+            _databaseName.Should()
+                .ExistDatabaseWithThatName(connectionString);
+        }
+        [Fact]
+        public void
+            when_call_sandbox_on_httpRequestMessage_with_databaseName_should_generate_connectionString_and_must_not_create_database()
+        {
+            var httpClient = new HttpRequestMessage();
+            var databaseName = DatabaseGenerator.NewName;
+            CreateDatabase(databaseName);
+
+            var databaseInformation = httpClient.SetSandboxHeader(databaseName);
+
+            _databaseName = httpClient.Headers
+                .GetValues(HeaderNames.DatabaseName).First();
+            var connectionString = httpClient.Headers
+                .GetValues(HeaderNames.DatabaseConnectionString).First();
+
+            _databaseName.Should().BeSameAs(databaseName);
+            _databaseName.Should()
+                .ExistDatabaseWithThatName(connectionString);
+        }
         [Fact]
         public void when_call_sandbox_on_httpRequestMessage_should_create_database_and_set_header()
         {
@@ -86,6 +122,11 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
         public void Dispose()
         {
             _sqlServerDatabase.Drop(_databaseName);
+        }
+
+        private void CreateDatabase(string databaseName)
+        {
+            _sqlServerDatabase.Create(databaseName);
         }
     }
 }

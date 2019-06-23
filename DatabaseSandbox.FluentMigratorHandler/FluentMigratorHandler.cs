@@ -19,16 +19,18 @@ namespace DatabaseSandbox.FluentMigrator
             IConnectionStringBuilder connectionStringBuilder,
             DatabaseCreator databaseCreator,
             ICommandExecutor commandExecutor)
-            :base(configuration)
+            : base(configuration)
         {
             _configuration = configuration;
             _connectionStringBuilder = connectionStringBuilder;
             _databaseCreator = databaseCreator;
             _commandExecutor = commandExecutor;
         }
-        public override CreatedDatabaseInformation Execute()
+        public override CreatedDatabaseInformation Execute(string databaseName = null)
         {
-            var databaseName= CreateNewDatabase();
+            if (databaseName == null)
+                databaseName = CreateNewDatabase();
+
             var newDbConnectionString = _connectionStringBuilder.Build(databaseName);
 
             var commandGenerator = new FluentMigratorCommandGenerator(_configuration);

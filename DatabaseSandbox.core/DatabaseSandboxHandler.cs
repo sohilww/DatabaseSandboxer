@@ -4,7 +4,7 @@ namespace DatabaseSandbox.Core
 {
     public interface IDatabaseSandboxHandler
     {
-        CreatedDatabaseInformation Execute();
+        CreatedDatabaseInformation Execute(string databaseName = null);
     }
 
     public abstract class DatabaseSandboxHandler<TConfiguration> :IDatabaseSandboxHandler
@@ -17,6 +17,6 @@ namespace DatabaseSandbox.Core
             _configuration = configuration;
         }
 
-        public abstract CreatedDatabaseInformation Execute();
+        public abstract CreatedDatabaseInformation Execute(string databaseName = null);
     }
 }

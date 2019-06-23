@@ -53,7 +53,6 @@ namespace DatabaseSandbox.SQLServer
             existsCommand.ExecuteScalar();
 
         }
-
         private void CloseConnections(string databaseName)
         {
             var commandText = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
