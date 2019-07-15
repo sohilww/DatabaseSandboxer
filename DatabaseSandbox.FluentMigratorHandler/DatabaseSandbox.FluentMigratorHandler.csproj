@@ -11,7 +11,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>false</Optimize>
-    <PackageId>DatbaseSandboxer.FluentMigrator</PackageId>
+    <PackageId>DatabaseSandboxer.FluentMigrator</PackageId>
     <Authors>sohil_ww</Authors>
     <PackageDescription>
       With this packages you can create database for each http call and create sandbox for test
