@@ -28,6 +28,9 @@
     <None Update="MigratorFile\FluentMigrator.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="MigratorFile\_FluentMigrator.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestConstants\testFile.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
