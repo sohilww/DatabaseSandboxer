@@ -15,6 +15,11 @@ namespace DatabaseSandbox.SQLServer
         { 
             _connection = (SqlConnection)connection;
         }
+
+        public SQLServerDriver(string connectionString)
+        {
+            _connection=new SqlConnection(connectionString);
+        }
         public void ExecuteCommand(string command)
         {
             try

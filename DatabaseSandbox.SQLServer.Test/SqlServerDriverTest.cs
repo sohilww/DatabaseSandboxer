@@ -19,6 +19,20 @@ namespace DatabaseSandbox.SQLServer.Test
             string sqlcommand = "use master;";
 
             Action action= ()=> sqlServerDriver.ExecuteCommand(sqlcommand);
+
+            action.Should().NotThrow<Exception>();
+        }
+
+        [Fact]
+        public void when_send_connectionString_should_connect_and_run_command()
+        {
+            var sqlServerDriver = new SQLServerDriver(_connectionstring);
+
+            string sqlcommand = "use master;";
+
+            Action action = () => sqlServerDriver.ExecuteCommand(sqlcommand);
+
+            action.Should().NotThrow<Exception>();
         }
 
         [Fact]
