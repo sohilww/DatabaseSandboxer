@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using DatabaseSandbox.Core;
@@ -6,7 +7,7 @@ using DatabaseSandbox.Core.Exceptions;
 
 namespace DatabaseSandbox.FluentMigrator
 {
-    public class PowerShellHandler :ICommandExecutor
+    public class PowerShellHandler : ICommandExecutor
     {
         public void Execute(string command)
         {
@@ -16,15 +17,24 @@ namespace DatabaseSandbox.FluentMigrator
                 powerShell.Invoke();
                 if (powerShell.Streams.Error.Any())
                 {
-                    throw new CommandExecutorException(powerShell.Streams.Error.First().Exception.Message);
+                    var errorMessages = ReadErrorMessages(powerShell);
+                    throw new CommandExecutorException(errorMessages);
                 }
             }
         }
+
+        private static string ReadErrorMessages(PowerShell powerShell)
+        {
+            var errors = powerShell.Streams.Error.Select(a => a.Exception.Message);
+            var errorMessages = string.Join(Environment.NewLine, errors);
+            return errorMessages;
+        }
+
         public void ExecuteFile(string commandPath)
         {
-            if(!File.Exists(commandPath))
+            if (!File.Exists(commandPath))
                 throw new FileNotFoundException(commandPath);
-            string command=File.ReadAllText(commandPath);
+            string command = File.ReadAllText(commandPath);
             Execute(command);
         }
     }
