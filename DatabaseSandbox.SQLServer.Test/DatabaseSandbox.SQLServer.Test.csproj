@@ -22,4 +22,8 @@
     <ProjectReference Include="..\DatabaseSandbox.SqlServerDriver\DatabaseSandbox.SQLServer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Consts\" />
+  </ItemGroup>
+
 </Project>

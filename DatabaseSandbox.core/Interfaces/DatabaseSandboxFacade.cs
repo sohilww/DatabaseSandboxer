@@ -2,6 +2,7 @@
 
 namespace DatabaseSandbox.Core.Interfaces
 {
+    //Todo:what happen when we want more than http client, and httpRequest message?
     public class DatabaseSandboxFacade
     {
         public CreatedDatabaseInformation ExecuteSandbox(HttpClient httpClient, 
@@ -11,6 +12,7 @@ namespace DatabaseSandbox.Core.Interfaces
 
             var httpSandBoxHandler = new HttpSandBoxHandler();
             httpSandBoxHandler.SetSandBoxHeader(httpClient,databaseInformation);
+
             return databaseInformation;
         }
         public CreatedDatabaseInformation ExecuteSandbox(HttpRequestMessage httpRequestMessage,
@@ -20,13 +22,14 @@ namespace DatabaseSandbox.Core.Interfaces
 
             var httpSandBoxHandler = new HttpRequestMessageSandboxHandler();
             httpSandBoxHandler.SetSandBoxHeader(httpRequestMessage, databaseInformation);
+
             return databaseInformation;
         }
 
         private CreatedDatabaseInformation ExecuteHandler(string databaseName=null)
         {
-            var fluentMigratorHandler = DatabaseSandboxResolver.Current.Resolve<IDatabaseSandboxHandler>();
-            var databaseInformation = fluentMigratorHandler.Execute(databaseName);
+            var databaseSandboxHandler = DatabaseSandboxResolver.Current.Resolve<IDatabaseSandboxHandler>();
+            var databaseInformation = databaseSandboxHandler.Execute(databaseName);
             return databaseInformation;
         }
     }

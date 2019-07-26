@@ -16,9 +16,9 @@ namespace DatabaseSandbox.SQLServer.Test
             var sqlConnection = new SqlConnection(_connectionstring);
             var sqlServerDriver = new SQLServerDriver(sqlConnection);
 
-            string sqlcommand = "use master;";
+            string sqlCommand = "use master;";
 
-            Action action= ()=> sqlServerDriver.ExecuteCommand(sqlcommand);
+            Action action= ()=> sqlServerDriver.ExecuteCommand(sqlCommand);
 
             action.Should().NotThrow<Exception>();
         }
@@ -28,18 +28,18 @@ namespace DatabaseSandbox.SQLServer.Test
         {
             var sqlServerDriver = new SQLServerDriver(_connectionstring);
 
-            string sqlcommand = "use master;";
+            string sqlCommand = "use master;";
 
-            Action action = () => sqlServerDriver.ExecuteCommand(sqlcommand);
+            Action action = () => sqlServerDriver.ExecuteCommand(sqlCommand);
 
             action.Should().NotThrow<Exception>();
         }
 
         [Fact]
-        public void when_run_wrong_command_then_should_run_without_exception()
+        public void when_run_wrong_command_then_should_run_with_exception()
         {
-            var sqlConneciton=new SqlConnection(_connectionstring);
-            var sqlServerDriver=new SQLServerDriver(sqlConneciton);
+            var sqlConnection=new SqlConnection(_connectionstring);
+            var sqlServerDriver=new SQLServerDriver(sqlConnection);
 
             string wrongSqlCommand = "use";
 
