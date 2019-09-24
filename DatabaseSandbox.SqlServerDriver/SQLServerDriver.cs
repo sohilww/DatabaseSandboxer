@@ -11,16 +11,19 @@ namespace DatabaseSandbox.SQLServer
     public class SQLServerDriver : IDatabaseDriver
     {
         private readonly SqlConnection _connection;
-
-        public SQLServerDriver(DbConnection connection)
+        private bool _IsOwnerTheConnection;
+        public SQLServerDriver(DbConnection connection,bool ownTheConnection=true)
         {
             _connection = (SqlConnection)connection;
+            _IsOwnerTheConnection = ownTheConnection;
+            OpenConnection();
         }
 
         public SQLServerDriver(string connectionString)
+            : this(new SqlConnection(connectionString))
         {
-            _connection = new SqlConnection(connectionString);
         }
+        
         public void ExecuteCommand(string command)
         {
             try
@@ -31,7 +34,18 @@ namespace DatabaseSandbox.SQLServer
             {
                 throw new DatabaseDriverException(exception.Message);
             }
+            finally
+            {
+                CloseConnection();
 
+            }
+
+        }
+        private void Execute(string command)
+        {
+            OpenConnection();
+            var sqlCommand = new SqlCommand(command, _connection);
+            sqlCommand.ExecuteNonQuery();
         }
 
         public bool Exists(string command)
@@ -52,16 +66,19 @@ namespace DatabaseSandbox.SQLServer
                 _connection.Close();
             }
         }
-        private void Execute(string command)
-        {
-            OpenConnection();
-            var sqlCommand = new SqlCommand(command, _connection);
-            sqlCommand.ExecuteNonQuery();
-        }
+
         private void OpenConnection()
         {
-            if (_connection.State != ConnectionState.Open)
-                _connection.Open();
+            if (_IsOwnerTheConnection)
+                if (_connection.State != ConnectionState.Open)
+                    _connection.Open();
         }
+        private void CloseConnection()
+        {
+            if (_IsOwnerTheConnection)
+                if (_connection.State != ConnectionState.Closed)
+                    _connection.Close();
+        }
+
     }
 }

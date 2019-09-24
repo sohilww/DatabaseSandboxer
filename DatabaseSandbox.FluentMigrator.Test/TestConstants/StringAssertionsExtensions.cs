@@ -26,7 +26,8 @@ namespace DatabaseSandbox.FluentMigrator.Test.TestConstants
             string connectionString)
         {
             var dbName = assertions.Subject;
-            SQLServerDriver driver=new SQLServerDriver(new SqlConnection(connectionString));
+            SQLServerDriver driver=
+                new SQLServerDriver(new SqlConnection(connectionString));
             var command = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'People'";
             var isTableCreated = driver.Exists(command);
             Execute.Assertion.ForCondition(isTableCreated)

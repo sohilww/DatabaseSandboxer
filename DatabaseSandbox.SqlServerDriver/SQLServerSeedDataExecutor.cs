@@ -11,7 +11,7 @@ namespace DatabaseSandbox.SQLServer
         public void Execute(SqlConnection connection, SeedDataScriptConfiguration configuration)
         {
             var command = ReadFile(configuration.Path);
-            var sqlDriver=new SQLServerDriver(connection);
+            var sqlDriver=new SQLServerDriver(connection,false);
             sqlDriver.ExecuteCommand(command);
         }
 

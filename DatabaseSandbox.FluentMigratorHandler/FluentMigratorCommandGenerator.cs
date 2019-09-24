@@ -15,10 +15,7 @@ namespace DatabaseSandbox.FluentMigrator
         {
             return $"dotnet fm migrate -p {_configuration.SqlServerVersion} -c " +
                    $"\"{newDbConnectionString} \" " +
-                   $"-a \"{_configuration.MigrationClassLibraryPath}\""; ;
-
-
-
+                   $"-a \"{_configuration.MigrationClassLibraryPath}\"";
         }
 
     }
