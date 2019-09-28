@@ -4,9 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>DatabaseSandbox.FluentMigrator</RootNamespace>
     <AssemblyName>DatabaseSandbox.FluentMigrator</AssemblyName>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
-    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
+    <Version>1.0.3</Version>
     <PackageProjectUrl>https://github.com/sohilww/DatabaseSandboxer</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/sohilww/DatabaseSandboxer</PackageLicenseUrl>
   </PropertyGroup>
