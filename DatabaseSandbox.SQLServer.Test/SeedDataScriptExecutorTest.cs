@@ -22,7 +22,7 @@ namespace DatabaseSandbox.SQLServer.Test
             _connection.Open();
         }
         [Fact]
-        public void should_run_script_on_database()
+        public void should_run_script_file_on_database()
         {
             _commandFilePath = CreateCommandFilePath();
             _databaseName = CreateSqlServerCommandFile(_commandFilePath);

@@ -1,5 +1,5 @@
 ﻿using System;
-using DatabaseSandbox.Core.Database;
+using System.Threading.Tasks;
 using DatabaseSandbox.Core.Exceptions;
 using DatabaseSandbox.Core.Utility;
 using FluentAssertions;
@@ -41,6 +41,22 @@ namespace DatabaseSandbox.SQLServer.Test
             action.Should().Throw<DatabaseCreationException>();
         }
 
+        [Fact]
+        public void when_run_concurrency_command_should_execute_all_commands()
+        {
+            var connectionString = StubConnectionStringBuilder.Create();
+            
+            Parallel.For(0, 20, (i) =>
+            {
+                var sqlServerCreator = new SQLServerCreator(connectionString);
+                var databaseName = DatabaseGenerator.NewName;
+
+                sqlServerCreator.Create(databaseName);
+
+                sqlServerCreator.Drop(databaseName);
+            });
+            
+        }
         [Fact]
         public void drop_exists_database()
         {
