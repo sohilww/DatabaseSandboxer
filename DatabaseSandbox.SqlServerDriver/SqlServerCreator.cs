@@ -8,12 +8,19 @@ namespace DatabaseSandbox.SQLServer
 {
     public class SQLServerCreator : DatabaseCreator
     {
-        private SqlConnection _sqlConnection;
+        private SqlServerDbSandBoxConnection _sqlConnection;
+        private SqlServerDbSandBoxConnection _dbSandBoxConnection;
+
         public SQLServerCreator(IConnectionStringBuilder connectionStringBuilder)
         {
-            _sqlConnection = new SqlConnection(connectionStringBuilder.Build());
-            
+            _sqlConnection = new SqlServerDbSandBoxConnection(connectionStringBuilder);
         }
+
+        public SQLServerCreator(SqlServerDbSandBoxConnection sqlConnection)
+        {
+            _sqlConnection = sqlConnection;
+        }
+
         public override void Create(string databaseName)
         {
             try
@@ -50,7 +57,7 @@ namespace DatabaseSandbox.SQLServer
         private void CreateDatabase(string databaseName)
         {
             var command = new
-                SqlCommand($"create database [{databaseName}]", _sqlConnection);
+                SqlCommand($"create database [{databaseName}]", _sqlConnection.SqlConnection);
             command.ExecuteNonQuery();
         }
 
@@ -76,7 +83,7 @@ namespace DatabaseSandbox.SQLServer
             var commandText = "SELECT name FROM master.dbo.sysdatabases " +
                               $" WHERE name = '{databaseName}'";
 
-            var existsCommand = new SqlCommand(commandText, _sqlConnection);
+            var existsCommand = new SqlCommand(commandText, _sqlConnection.SqlConnection);
             var exist = existsCommand.ExecuteScalar();
             return exist != null;
             
@@ -89,7 +96,7 @@ namespace DatabaseSandbox.SQLServer
                 _sqlConnection.Open();
                 CloseConnectionsOfDatabases(databaseName);
                 var commandText = $"Drop Database [{databaseName}]";
-                var existsCommand = new SqlCommand(commandText, _sqlConnection);
+                var existsCommand = new SqlCommand(commandText, _sqlConnection.SqlConnection);
                 existsCommand.ExecuteScalar();
                 
             }
@@ -106,15 +113,15 @@ namespace DatabaseSandbox.SQLServer
         private void CloseConnectionsOfDatabases(string databaseName)
         {
             var commandText = $"ALTER DATABASE [{databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-            var existsCommand = new SqlCommand(commandText, _sqlConnection);
+            var existsCommand = new SqlCommand(commandText, _sqlConnection.SqlConnection);
             existsCommand.ExecuteNonQuery();
         }
 
         public void Dispose()
         {
-            if (_sqlConnection.State != ConnectionState.Closed)
+            if (_sqlConnection.SqlConnection.State != ConnectionState.Closed)
                 _sqlConnection.Close();
-            _sqlConnection.Dispose();
+            _sqlConnection.SqlConnection.Dispose();
         }
     }
 }

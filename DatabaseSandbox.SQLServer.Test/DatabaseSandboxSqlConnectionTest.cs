@@ -65,5 +65,12 @@ namespace DatabaseSandbox.SQLServer.Test
             action.Should().Throw<CannotConnectToDatabaseException>();
         }
 
+        [Fact]
+        public void should_close_existing_connection()
+        {
+            _sqlServerDbSandBoxConnection.Open();
+
+            _sqlServerDbSandBoxConnection.Close();
+        }
     }
 }

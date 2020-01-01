@@ -30,7 +30,6 @@ namespace DatabaseSandbox.SQLServer.Test
 
             DropDatabase(databaseName);
         }
-
         [Fact]
         public void given_wrong_name_then_should_not_create_database()
         {
@@ -68,6 +67,14 @@ namespace DatabaseSandbox.SQLServer.Test
             var databaseExists = CheckDatabaseExists(databaseName);
 
             databaseExists.Should().BeFalse();
+        }
+
+        [Fact]
+        public void create_sqlServerCreator_with_dbConnection()
+        {
+            var sqlServerCreator=
+                new SQLServerCreator(new SqlServerDbSandBoxConnection(StubConnectionStringBuilder.Create()));
+
         }
 
         private bool CheckDatabaseExists(string databaseName)

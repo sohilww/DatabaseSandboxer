@@ -19,6 +19,8 @@ namespace DatabaseSandbox.FluentMigrator
                 SqlServerConnectionStringBuilder>();
 
             serviceRegistry.Register<DatabaseCreator,SQLServerCreator>();
+
+            serviceRegistry.Register<IDbSandBoxConnection, SqlServerDbSandBoxConnection>();
         }
 
         public static void AddToIOC(IServiceRegistry serviceRegistry)

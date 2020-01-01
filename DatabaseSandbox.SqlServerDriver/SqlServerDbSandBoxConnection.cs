@@ -6,10 +6,12 @@ using DatabaseSandbox.Core.Exceptions;
 
 namespace DatabaseSandbox.SQLServer
 {
-    public class SqlServerDbSandBoxConnection: IDbSandBoxConnection
+    public class SqlServerDbSandBoxConnection : IDbSandBoxConnection
     {
         private readonly SqlConnection _sqlConnection;
 
+        [Obsolete("I put this just for backward compatibility and in version 2 it will remove")]
+        public SqlConnection SqlConnection => _sqlConnection;
         public SqlServerDbSandBoxConnection(IConnectionStringBuilder connectionStringBuilder)
         {
             _sqlConnection = new SqlConnection(connectionStringBuilder.Build());
@@ -25,7 +27,7 @@ namespace DatabaseSandbox.SQLServer
             {
                 throw new CannotConnectToDatabaseException(exception);
             }
-            
+
         }
 
         public async Task OpenAsync()
@@ -39,5 +41,18 @@ namespace DatabaseSandbox.SQLServer
                 throw new CannotConnectToDatabaseException(exception);
             }
         }
+
+        public void Close()
+        {
+            try
+            {
+                _sqlConnection.Close();
+            }
+            catch (SqlException exception)
+            {
+                throw new CannotCloseConnectionException(exception);
+            }
+        }
+
     }
 }
