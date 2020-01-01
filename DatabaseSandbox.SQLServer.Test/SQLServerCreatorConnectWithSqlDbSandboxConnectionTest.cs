@@ -7,13 +7,13 @@ using Xunit;
 
 namespace DatabaseSandbox.SQLServer.Test
 {
-    public class SQLServerCreatorTest
+    public class SqlServerCreatorConnectWithSqlDbSandboxConnectionTest
     {
         private SQLServerCreator _database;
 
-        public SQLServerCreatorTest()
+        public SqlServerCreatorConnectWithSqlDbSandboxConnectionTest()
         {
-            _database = new SQLServerCreator(StubConnectionStringBuilder.Create());
+            _database = new SQLServerCreator(new SqlServerDbSandBoxConnection(StubConnectionStringBuilder.Create()));
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace DatabaseSandbox.SQLServer.Test
         public void when_run_concurrency_command_should_execute_all_commands()
         {
             var connectionString = StubConnectionStringBuilder.Create();
-            
+
             Parallel.For(0, 20, (i) =>
             {
                 var sqlServerCreator = new SQLServerCreator(connectionString);
@@ -54,7 +54,23 @@ namespace DatabaseSandbox.SQLServer.Test
 
                 sqlServerCreator.Drop(databaseName);
             });
-            
+
+        }
+        [Fact]
+        public void when_run_concurrency_command_with_userId_AndPasswordConnectionString_should_execute_all_commands()
+        {
+            var connectionString = StubConnectionStringBuilder.CreateWithUserNameAndPassword();
+
+            Parallel.For(0, 20, (i) =>
+            {
+                var sqlServerCreator = new SQLServerCreator(connectionString);
+                var databaseName = DatabaseGenerator.NewName;
+
+                sqlServerCreator.Create(databaseName);
+
+                sqlServerCreator.Drop(databaseName);
+            });
+
         }
         [Fact]
         public void drop_exists_database()

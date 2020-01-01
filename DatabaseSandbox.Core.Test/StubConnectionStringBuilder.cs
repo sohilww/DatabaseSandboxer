@@ -29,5 +29,10 @@ namespace DatabaseSandbox.Core.Utility
         {
             return new StubConnectionStringBuilder();
         }
+        public static IConnectionStringBuilder CreateWithUserNameAndPassword()
+        {
+            return new StubConnectionStringBuilder()
+                .SetConnectionString("Data source=.;User Id=sa;password=123456;");
+        }
     }
 }
