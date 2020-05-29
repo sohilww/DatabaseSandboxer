@@ -9,7 +9,7 @@ namespace DatabaseSandbox.SQLServer.Test
     public class SqlServerDriverTest
     {
         string _connectionstring =
-            "data source=.;initial catalog=master;integrated security=true;";
+            "data source=.\\MSSQLSERVER2016;initial catalog=master;integrated security=true;";
         [Fact]
         public void when_run_command_then_should_run_without_exception()
         {

@@ -33,7 +33,7 @@ namespace DatabaseSandbox.SQLServer.Test
         public void open_connection_with_userPassword_ConnectionString()
         {
             IConnectionStringBuilder connectionStringBuilder = new StubConnectionStringBuilder()
-                .SetConnectionString("data source=.;initial catalog=master;User Id=sa;Password=123456");
+                .SetConnectionString("data source=.\\MSSQLSERVER2016;initial catalog=master;User Id=sa;Password=123456");
             var serverConnectionString =
                 new SqlServerDbSandBoxConnection(connectionStringBuilder);
 

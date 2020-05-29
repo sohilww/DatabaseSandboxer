@@ -10,7 +10,7 @@ namespace DatabaseSandbox.SQLServer
     {
         private readonly SqlConnection _sqlConnection;
 
-        [Obsolete("I put this just for backward compatibility and in version 2 it will remove")]
+        [Obsolete("I put this for backward compatibility and in version 2 it will remove")]
         public SqlConnection SqlConnection => _sqlConnection;
         public SqlServerDbSandBoxConnection(IConnectionStringBuilder connectionStringBuilder)
         {

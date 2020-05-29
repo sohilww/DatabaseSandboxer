@@ -1,9 +1,7 @@
-﻿using System;
-using DatabaseSandbox.Core;
+﻿using DatabaseSandbox.Core;
 using DatabaseSandbox.Core.Database;
 using DatabaseSandbox.Core.Utility;
 using DatabaseSandbox.FluentMigrator.Config;
-using DatabaseSandbox.SQLServer;
 
 namespace DatabaseSandbox.FluentMigrator
 {

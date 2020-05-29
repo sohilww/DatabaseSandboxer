@@ -15,8 +15,6 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
 {
     public class FluentDatabaseSandBoxTest :IDisposable
     {
-        private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
-
         private string _migrationDllPath;
         private SQLServerCreator _sqlServerDatabase;
         private string _databaseName;
@@ -38,6 +36,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
                 .GetValues(HeaderNames.DatabaseName).First();
             var connectionString = httpClient.DefaultRequestHeaders
                 .GetValues(HeaderNames.DatabaseConnectionString).First();
+
             _databaseName.Should()
                 .ExistDatabaseWithThatName(connectionString);
             _databaseName.Should().HaveSchema(connectionString);
@@ -113,7 +112,7 @@ namespace DatabaseSandbox.FluentMigrator.Test.Integrations
                 SqlServerVersion = SQLServerVersions.Sql2012,
                 ConnectionString = new SqlServerDbSandboxConnectionString
                 {
-                    DataSourcePath = ".",
+                    DataSourcePath = @".\MSSQLSERVER2016",
                     IntegratedSecurity = true
                 }
             };

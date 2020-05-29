@@ -11,7 +11,7 @@ namespace DatabaseSandbox.SQLServer.Test
 {
     public class SeedDataScriptExecutorTest:IDisposable
     {
-        private string _connectionString = "data source=.;initial catalog=master;integrated security=true;";
+        private string _connectionString = "data source=.\\MSSQLSERVER2016;initial catalog=master;integrated security=true;";
         private string _commandFilePath;
         private string _databaseName;
         private SqlConnection _connection;

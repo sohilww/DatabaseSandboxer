@@ -8,7 +8,7 @@ namespace DatabaseSandbox.Core.Utility
 
         public StubConnectionStringBuilder()
         {
-            _connectionString = $"data source=.;initial catalog=dbName;integrated security=true;";
+            _connectionString = @"data source=.\MSSQLSERVER2016;initial catalog=master;integrated security=true;";
         }
         public StubConnectionStringBuilder SetConnectionString(string connectionString)
         {
@@ -32,7 +32,7 @@ namespace DatabaseSandbox.Core.Utility
         public static IConnectionStringBuilder CreateWithUserNameAndPassword()
         {
             return new StubConnectionStringBuilder()
-                .SetConnectionString("Data source=.;User Id=sa;password=123456;");
+                .SetConnectionString("Data source=.\\MSSQLSERVER2016;User Id=sa;password=123456;");
         }
     }
 }
